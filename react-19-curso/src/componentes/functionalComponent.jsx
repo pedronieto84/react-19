@@ -3,7 +3,7 @@
 const functionalComponent = () => {
     return (
         <>
-            <h1>Functional Component</h1>
+            <div className="card">Bootstrap Card</div>
         </>
     )
 }
