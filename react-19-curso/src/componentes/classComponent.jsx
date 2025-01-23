@@ -2,7 +2,11 @@ import * as React from "react"
 
 class ClassComponent extends React.Component {
     render() {
-        return <div>Class Component</div>
+        return (
+        <>
+            <h1>hola</h1>
+        </>
+        )
       }
 }
 
