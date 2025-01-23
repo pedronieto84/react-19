@@ -5,21 +5,13 @@ import ClassComponent from './componentes/classComponent';
 
 function App() {
 
-  const texto = 'Texto'
-  const objeto = {
-    nombre: 'Nombre',
-    apellido: 'Apellido'
-  }
 
   return (
     <>
       <h1 >React 19 Curso</h1>
       
       <ClassComponent 
-      propsClass1={texto}
-      propsClass2String = 'String a pelo'
-      propsClass3Number = {3}
-      propsClass4Object = {objeto}
+        recibirDatosDeHijo={(data) => console.log('recibido desde padre', data)}
       />
     </>
   )
