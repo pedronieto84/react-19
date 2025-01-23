@@ -1,23 +1,20 @@
 
 import './App.css'
 
-
-
 function App() {
 
-  const functionClick = () => {
-    console.log('onClick');
+  const functionWithParameters = ( parameter) => {
+    console.log(`Función llamada desde ${parameter}`);
   }
 
-  const functionOnMouseOver = () => {
-    console.log('onMouseOver');
-  }
-  
+
+
   return (
     <>
       <h1 >React 19 Curso</h1>
-      <button onClick= { functionClick } >CLICK</button>
-      <button onMouseOver= {functionOnMouseOver}>MOUSE OVER</button>
+      <button onClick={() => functionWithParameters('Click')}>Click</button>
+      <button onMouseOver={() => functionWithParameters('MouseOver')}>Mouse Over</button>
+
 
     </>
   )
