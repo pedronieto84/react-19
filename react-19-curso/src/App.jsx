@@ -1,27 +1,26 @@
 
 import './App.css'
-//import ClassComponent from './componentes/classComponent';
-import FunctionalComponent from './componentes/functionalComponent';
-import {useState} from 'react'
+import ClassComponent from './componentes/classComponent';
+//import FunctionalComponent from './componentes/functionalComponent';
 
 function App() {
 
-  // Esto son hooks, lo veremos más adelante
-  const [data, setData] = useState('')
-
-  const childToParent = (dataFromChild)=>{
-    console.log('data del hijo al padre', dataFromChild)
-    setData(dataFromChild)
+  const texto = 'Texto'
+  const objeto = {
+    nombre: 'Nombre',
+    apellido: 'Apellido'
   }
 
   return (
     <>
       <h1 >React 19 Curso</h1>
       
-      <FunctionalComponent childToParent = {childToParent} />
-      
-      <div className="card">{data}</div>
-     
+      <ClassComponent 
+      propsClass1={texto}
+      propsClass2String = 'String a pelo'
+      propsClass3Number = {3}
+      propsClass4Object = {objeto}
+      />
     </>
   )
 }
