@@ -3,27 +3,33 @@ import * as React from "react"
 
 class ClassComponent extends React.Component {
     
-    constructor(props) {    
-        super(props)
+    constructor() {    
+        super()
+        
         this.state = {
-            nombre: 'Juan',
+            value: 1
         }
+        console.log('constructor', this.state);
     }
-    
-    componentDidMount() {
-        setTimeout(() => {
-            this.setState({nombre: 'Pedro'})
-        }, 2000)
+
+    static getDerivedStateFromProps(props, state) {
+        console.log('getDerivedStateFromProps', props, state);
+        return null;
     }
 
     render() {
+        console.log('render')
         return (
         <>
            <h1>Componente de Clase</h1>
-           <h1>State definido desde el componente de clase {this.state.nombre}</h1>
+           <h1>State definido desde el componente de clase {this.state.value}</h1>
         </>
         )
       }
+
+      componentDidMount() {
+        console.log('component did mount')
+    }
 }
 
 export default ClassComponent
