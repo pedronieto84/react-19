@@ -3,14 +3,18 @@ import * as React from "react"
 
 class ClassComponent extends React.Component {
     
-    pasarHijoAPadre = (data) => {
-        this.props.recibirDatosDeHijo(data)
+    constructor(props) {    
+        super(props)
+        this.state = {
+            nombre: 'Juan',
+        }
     }
+    
     render() {
         return (
         <>
-            <h1>Class Component</h1>
-            <input type="text" onChange={(e) => this.pasarHijoAPadre(e.target.value)} />
+           <h1>Componente de Clase</h1>
+           <h1>State definido desde el componente de clase {this.state.nombre}</h1>
         </>
         )
       }
