@@ -1,20 +1,34 @@
 
 import './App.css'
-import ClassComponent from './componentes/classComponent';
-//import FunctionalComponent from './componentes/functionalComponent';
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import Pagina1 from './paginas/pagina1';
+import Pagina2 from './paginas/pagina2';
+import Pagina3 from './paginas/pagina3';
 
 function App() {
 
-
   return (
-    <>
-      <h1 >React 19 Curso</h1>
-      
-      <ClassComponent 
-        recibirDatosDeHijo={(data) => console.log('recibido desde padre', data)}
-        propDebug={2}
-      />
-    </>
+    <Router>
+    <nav>
+      <ul>
+        <li>
+          <Link to="/pagina1">Inicio</Link>
+        </li>
+        <li>
+          <Link to="/pagina2">Acerca de</Link>
+        </li>
+        <li>
+          <Link to="/pagina3">Contacto</Link>
+        </li>
+      </ul>
+    </nav>
+
+    <Routes>
+      <Route path="/pagina1" element={<Pagina1 />} />
+      <Route path="/pagina2" element={<Pagina2 />} />
+      <Route path="/pagina3" element={<Pagina3 />} />
+    </Routes>
+  </Router>
   )
 }
 
