@@ -12,6 +12,7 @@ function App() {
       
       <ClassComponent 
         recibirDatosDeHijo={(data) => console.log('recibido desde padre', data)}
+        propDebug={2}
       />
     </>
   )
