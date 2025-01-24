@@ -10,6 +10,12 @@ class ClassComponent extends React.Component {
         }
     }
     
+    componentDidMount() {
+        setTimeout(() => {
+            this.setState({nombre: 'Pedro'})
+        }, 2000)
+    }
+
     render() {
         return (
         <>
