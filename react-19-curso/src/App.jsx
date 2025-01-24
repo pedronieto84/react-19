@@ -1,21 +1,35 @@
 
+import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
 import './App.css'
 import ClassComponent from './componentes/classComponent';
-import { useState } from 'react';
+import FunctionalComponent from './componentes/functionalComponent';
 
 function App() {
 
-const [value, setValue] = useState(1);
 
-setTimeout(() => {
-  setValue(4)
-}, 4000);
 
 
   return (
-   <>
-   <ClassComponent value= { value } />
-   </>
+   
+   <Router>
+    <nav>
+      <ul>
+        <li>
+          <Link to="/">Class Component</Link>
+        </li>
+        <li>
+          <Link to="/functional">Functional Component</Link>
+        </li>
+      </ul>
+    </nav>
+   
+
+    <Routes>
+      <Route path="/" element={<ClassComponent />} /> 
+      <Route path="/functional" element={<FunctionalComponent />} /> 
+    </Routes>
+
+   </Router>
   )
 }
 
