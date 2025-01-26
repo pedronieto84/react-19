@@ -1,16 +1,20 @@
-// Se le llama functional component porque es una función
+// Uso de USEState
+import { useState } from "react";
 
-const functionalComponent = ({childToParent}) => {
-    const data = "Info del fill al pare"
+const FunctionalComponent = () => {
+
+    const [count, setCount] = useState(0)
+    
     return (
         <>
-            <h1>Functional Component</h1>
-            <button onClick={()=> childToParent(data)}>
-                Pasarle data al padre
+            <h1>Use State</h1>
+            <h2>Contador: {count}</h2>
+            <button onClick={()=> setCount( count + 1)}>
+                Aumentar contador
             </button>
       
         </>
     )
 }
 
-export default functionalComponent;
+export default FunctionalComponent;
