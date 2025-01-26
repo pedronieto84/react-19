@@ -2,28 +2,51 @@
 import { useState, useEffect } from "react";
 
 const FunctionalComponent = () => {
-
-    const [count, setCount] = useState(0)
-    // Usamos el use Effect
+ 
+    const [pokemon, setPokemon] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+  
     useEffect(() => {
-        console.log('useEffect', count)
-    })
-
-    
+      // Función para obtener los datos de Pikachu con un retraso de 3 segundos
+      const fetchPikachu = async () => {
+        try {
+          console.log('inicio fetch');
+          // Simulamos un retraso de 3 segundos
+          await new Promise((resolve) => setTimeout(resolve, 3000));
+  
+          const response = await fetch('https://pokeapi.co/api/v2/pokemon/pikachu');
+          if (!response.ok) {
+            throw new Error('No se pudo obtener la información de Pikachu');
+          }
+          const data = await response.json();
+          setPokemon(data); // Guardamos los datos en el estado
+        } catch (error) {
+          setError(error.message); // Guardamos el error en el estado
+        } finally {
+          setLoading(false); // Indicamos que la carga ha terminado
+        }
+      };
+  
+      fetchPikachu(); // Llamamos a la función
+    },[]); // El array vacío [] asegura que solo se ejecute una vez al montar el componente
+  
+    if (loading) return <p>Cargando información de Pikachu...</p>;
+    if (error) return <p>Error: {error}</p>;
+  
     return (
-        <>
-            <h1>Use Effect</h1>
-            <h2>Contador: {count}</h2>
-           
-           {
-            count %2 === 0 ? <h3>El número es par</h3> : <h3>El número es impar</h3>
-           }
-            <button onClick={()=> setCount( count + 1)}>
-                Aumentar contador
-            </button>
-      
-        </>
-    )
+      <div>
+        <h1>Información del Pokemon</h1>
+        {pokemon && (
+          <div>
+            <p>Nombre: {pokemon.name}</p>
+            <p>Altura: {pokemon.height / 10} m</p>
+       
+            <img src={pokemon.sprites.front_default} alt="Pikachu" />
+          </div>
+        )}
+      </div>
+    );
 }
 
 export default FunctionalComponent;
