@@ -11,7 +11,7 @@ function App() {
     <nav>
       <ul>
         <li>
-          <Link to="/use-state">Use State</Link>
+          <Link to="/use-effect">Use Effect</Link>
         </li>
       </ul>
     </nav>
@@ -19,7 +19,7 @@ function App() {
 
     <Routes>
     
-      <Route path="/use-state" element={<FunctionalComponent />} /> 
+      <Route path="/use-effect" element={<FunctionalComponent />} /> 
     </Routes>
 
    </Router>
