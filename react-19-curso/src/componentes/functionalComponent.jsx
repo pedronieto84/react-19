@@ -1,31 +1,30 @@
-// Uso de useReducer
-import { useReducer } from "react";
+// Uso de useLayoutEffect
+import { useLayoutEffect, useState, useRef } from "react";
 
 const FunctionalComponent = () => {
- 
 
-  const reducer = (state, action) => {
-    switch (action) {
-      case "increment":
-        return state + 1
-      case "decrement":
-        return state - 1
-      default:
-        return state;
-    }
-  }
 
-  const [count, dispatch] = useReducer(reducer, 0);
+  const [width, setWidth] = useState(0);
+  const ref = useRef(null); // Usamos useRef porque interactuamos con el DOM
   
-    return (
-      <div>
-        <h1>Counter: {count}</h1>
-        <button onClick={() => dispatch("increment")}>Increment</button>
+  useLayoutEffect(() => {
+    console.log(ref);
+    if (ref.current) {
+      // Medimos el ancho del elemento referenciado
+      const measuredWidth = ref.current.getBoundingClientRect().width;
+      setWidth(measuredWidth);
+    }
+  }, []); // El array vacío asegura que esto solo se ejecute una vez, después del montaje
 
-        <button onClick={() => dispatch("decrement")}>Increment</button>
-   
+  return (
+    <div>
+      <div ref={ref} style={{ border: '1px solid black', padding: '10px' }}>
+        Este es un elemento de ejemplo
       </div>
-    );
+      <p>El ancho del elemento es: {width}px</p>
+    </div>
+  );
 }
+
 
 export default FunctionalComponent;

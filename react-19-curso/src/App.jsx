@@ -11,7 +11,7 @@ function App() {
     <nav>
       <ul>
         <li>
-          <Link to="/">Use Reducer</Link>
+          <Link to="/">Use Layout Effect</Link>
         </li>
       </ul>
     </nav>
