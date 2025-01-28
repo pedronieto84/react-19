@@ -1,35 +1,47 @@
-// Uso de useTransition
-import {  useTransition , useState } from "react";
+// Uso de useDeferredValue
+import {  useState, useDeferredValue } from "react";
 
 const FunctionalComponent = () => {
   
-  const [list, setList] = useState([]);
-  const [isPending, startTransition] = useTransition();
-  
-  const handleChange = (e) => {
-    
-    startTransition(() => {
-      // Actualización no urgente
-      const items = [];
+  const [searchTerm, setSearchTerm] = useState("");
+  const deferredSearchTerm = useDeferredValue(searchTerm); // Diferir el valor del término de búsqueda
 
-      // Hago esto para forzar una operación muy pesada
-      for (let i = 0; i < 20000; i++) {
-        items.push(e.target.value);
-      }
-      setList(items);
-    });
+
+
+  const generateRandomString = (length) => {
+    const characters = "abcdefghijklmnopqrstuvwxyz";
+    let result = "";
+    for (let i = 0; i < length; i++) {
+      result += characters.charAt(Math.floor(Math.random() * characters.length));
+    }
+    return result;
   };
   
+  const items = Array.from({ length: 900 }, () => generateRandomString(2500));
+
+
+
+  // Filtrar la lista usando el valor diferido
+  const filteredItems = items.filter((item) =>
+    item.toLowerCase().includes(deferredSearchTerm.toLowerCase())
+  );
+
   return (
     <div>
-    <input type="text"  onChange={handleChange} />
-    {isPending ? (
-      <p>Cargando...</p>
-    ) : (
-      list.map((item, index) => <div key={index}>{item}</div>)
-    )}
-  </div>
-);
+      <h1>Filtrar lista</h1>
+      <input
+        type="text"
+        placeholder="Buscar..."
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+      />
+      <ul>
+        {filteredItems.map((item, index) => (
+          <li key={index}>{item}</li>
+        ))}
+      </ul>
+    </div>
+  );
 }
 
 export default FunctionalComponent;

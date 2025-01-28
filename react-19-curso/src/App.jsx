@@ -11,7 +11,7 @@ function App() {
     <nav>
       <ul>
         <li>
-          <Link to="/">useTransition</Link>
+          <Link to="/">useDeferredValue</Link>
         </li>
       </ul>
     </nav>
