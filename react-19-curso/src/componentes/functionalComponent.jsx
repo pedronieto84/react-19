@@ -1,17 +1,30 @@
-// Uso de useDebugValue
-import {  useDebugValue, useState } from "react";
+// Uso de useId
+import {  useId } from "react";
 
-function useCounter() {
-  const [count, setCount] = useState(0);
-  useDebugValue(`Count desde useDebugValue: ${count}`); // Muestra el valor en React DevTools
-  return [count, setCount];
+function EmailInput({name}) {
+
+  const id= useId()
+  console.log('id', id);
+  return (
+    <>
+    <label htmlFor={id}>{name}</label>
+    <input id={id} type="email" />
+    </>
+  )
 }
 
 const FunctionalComponent = () => {
   
-  const [count, setCount] = useCounter();
-  return <button onClick={() => setCount(count + 1)}>Count: {count}</button>;
+  return (
+    <>
+      <h1>Componente Funcional</h1>
+      <EmailInput name="Email" />
+      <br />
+      <br />
 
+      <EmailInput name="Confirm Email" />
+    </>
+  )
 }
 
 export default FunctionalComponent;

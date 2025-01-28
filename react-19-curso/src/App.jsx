@@ -11,7 +11,7 @@ function App() {
     <nav>
       <ul>
         <li>
-          <Link to="/">useDebugValue</Link>
+          <Link to="/">useId</Link>
         </li>
       </ul>
     </nav>
