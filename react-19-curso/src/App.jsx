@@ -11,7 +11,7 @@ function App() {
     <nav>
       <ul>
         <li>
-          <Link to="/">UseRef</Link>
+          <Link to="/">useMemo</Link>
         </li>
       </ul>
     </nav>

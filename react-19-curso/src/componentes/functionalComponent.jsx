@@ -1,29 +1,22 @@
-// Uso de useRef
-import {  useRef } from "react";
+// Uso de useMemo
+import {  useMemo, useState } from "react";
 
 const FunctionalComponent = () => {
 
-  const renderCount = useRef(0); // Contador de renders
-  const inputRef = useRef(null); // Crear una referencia para el input
+  const [number, setNumber] = useState(1);
 
-  
-  // Controlamos el evento con una función
-  const manejarClick = () => {
-    renderCount.current += 1 // Es mutable, puedo modificarlo directamente
-    inputRef.current.value = renderCount.current
-    inputRef.current.focus(); // Hacemos focus en el input (interactuamos con DOM sin renderizar)
-  };
+  // Estructura y sintaxis similar a useEffect
+  const squaredNumber = useMemo(() => {
+    console.log('Calculando el cuadrado...');
+    return number * number; // Debe tener un return
+  }, [number]); // Solo recalcula si `number` cambia
 
   return (
     <div>
-      <p>Número de renders: {renderCount.current}</p>
-      <button onClick={manejarClick}>Incrementar</button>
-
-      <input ref={inputRef} type="text" placeholder="Escribe algo..." />
-
+      <h1>Número: {number} </h1>
+      <h2>Cuadrado: {squaredNumber} </h2>
+      <button onClick={() => setNumber(number + 1)}> Incrementar </button>
     </div>
-
-    
   );
 }
 
