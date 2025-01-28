@@ -1,47 +1,17 @@
-// Uso de useDeferredValue
-import {  useState, useDeferredValue } from "react";
+// Uso de useDebugValue
+import {  useDebugValue, useState } from "react";
+
+function useCounter() {
+  const [count, setCount] = useState(0);
+  useDebugValue(`Count desde useDebugValue: ${count}`); // Muestra el valor en React DevTools
+  return [count, setCount];
+}
 
 const FunctionalComponent = () => {
   
-  const [searchTerm, setSearchTerm] = useState("");
-  const deferredSearchTerm = useDeferredValue(searchTerm); // Diferir el valor del término de búsqueda
+  const [count, setCount] = useCounter();
+  return <button onClick={() => setCount(count + 1)}>Count: {count}</button>;
 
-
-
-  const generateRandomString = (length) => {
-    const characters = "abcdefghijklmnopqrstuvwxyz";
-    let result = "";
-    for (let i = 0; i < length; i++) {
-      result += characters.charAt(Math.floor(Math.random() * characters.length));
-    }
-    return result;
-  };
-  
-  const items = Array.from({ length: 900 }, () => generateRandomString(2500));
-
-
-
-  // Filtrar la lista usando el valor diferido
-  const filteredItems = items.filter((item) =>
-    item.toLowerCase().includes(deferredSearchTerm.toLowerCase())
-  );
-
-  return (
-    <div>
-      <h1>Filtrar lista</h1>
-      <input
-        type="text"
-        placeholder="Buscar..."
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-      />
-      <ul>
-        {filteredItems.map((item, index) => (
-          <li key={index}>{item}</li>
-        ))}
-      </ul>
-    </div>
-  );
 }
 
 export default FunctionalComponent;
