@@ -11,7 +11,7 @@ function App() {
     <nav>
       <ul>
         <li>
-          <Link to="/">useContext</Link>
+          <Link to="/">useTransition</Link>
         </li>
       </ul>
     </nav>

@@ -1,30 +1,36 @@
-// Uso de useContext
-import {  createContext, useContext } from "react";
-
-
-// 1. Crear un contexto
-const ThemeContext = createContext();
-// No lo hemos visto aún pero es una forma de compartir datos entre componentes sin tener que pasar props manualmente a través de cada nivel de la jerarquía de componentes.
-// Es util si tengo un componente que tiene muchos hijos y quiero pasarle una prop a todos los hijos, en lugar de pasarla manualmente a cada uno de los hijos, puedo usar un contexto para pasarla a todos los hijos de una vez.
-
+// Uso de useTransition
+import {  useTransition , useState } from "react";
 
 const FunctionalComponent = () => {
+  
+  const [list, setList] = useState([]);
+  const [isPending, startTransition] = useTransition();
+  
+  const handleChange = (e) => {
+    
+    startTransition(() => {
+      // Actualización no urgente
+      const items = [];
 
+      // Hago esto para forzar una operación muy pesada
+      for (let i = 0; i < 20000; i++) {
+        items.push(e.target.value);
+      }
+      setList(items);
+    });
+  };
+  
   return (
-    // 2. Proveer el valor del contexto
-    <ThemeContext.Provider value="dark">
-      <ChildComponent />
-    </ThemeContext.Provider>
-  );
+    <div>
+    <input type="text"  onChange={handleChange} />
+    {isPending ? (
+      <p>Cargando...</p>
+    ) : (
+      list.map((item, index) => <div key={index}>{item}</div>)
+    )}
+  </div>
+);
 }
-
 
 export default FunctionalComponent;
 
-function ChildComponent() {
-  // 3. Consumir el valor del contexto
-  const theme = useContext(ThemeContext);
-
-  return <p>El tema actual es: {theme}</p>;
-
-}
