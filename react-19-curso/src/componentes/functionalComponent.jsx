@@ -1,28 +1,29 @@
-// Uso de useLayoutEffect
-import { useLayoutEffect, useState, useRef } from "react";
+// Uso de useRef
+import {  useRef } from "react";
 
 const FunctionalComponent = () => {
 
+  const renderCount = useRef(0); // Contador de renders
+  const inputRef = useRef(null); // Crear una referencia para el input
 
-  const [width, setWidth] = useState(0);
-  const ref = useRef(null); // Usamos useRef porque interactuamos con el DOM
   
-  useLayoutEffect(() => {
-    console.log(ref);
-    if (ref.current) {
-      // Medimos el ancho del elemento referenciado
-      const measuredWidth = ref.current.getBoundingClientRect().width;
-      setWidth(measuredWidth);
-    }
-  }, []); // El array vacío asegura que esto solo se ejecute una vez, después del montaje
+  // Controlamos el evento con una función
+  const manejarClick = () => {
+    renderCount.current += 1 // Es mutable, puedo modificarlo directamente
+    inputRef.current.value = renderCount.current
+    inputRef.current.focus(); // Hacemos focus en el input (interactuamos con DOM sin renderizar)
+  };
 
   return (
     <div>
-      <div ref={ref} style={{ border: '1px solid black', padding: '10px' }}>
-        Este es un elemento de ejemplo
-      </div>
-      <p>El ancho del elemento es: {width}px</p>
+      <p>Número de renders: {renderCount.current}</p>
+      <button onClick={manejarClick}>Incrementar</button>
+
+      <input ref={inputRef} type="text" placeholder="Escribe algo..." />
+
     </div>
+
+    
   );
 }
 

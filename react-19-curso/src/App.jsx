@@ -11,7 +11,7 @@ function App() {
     <nav>
       <ul>
         <li>
-          <Link to="/">Use Layout Effect</Link>
+          <Link to="/">UseRef</Link>
         </li>
       </ul>
     </nav>
