@@ -1,24 +1,18 @@
-// Uso de useMemo
-import {  useMemo, useState } from "react";
+// Uso de useCallback
+import {  useCallback, useState } from "react";
 
 const FunctionalComponent = () => {
 
-  const [number, setNumber] = useState(1);
+  const [count, setCount] = useState(0);
 
-  // Estructura y sintaxis similar a useEffect
-  const squaredNumber = useMemo(() => {
-    console.log('Calculando el cuadrado...');
-    return number * number; // Debe tener un return
-  }, [number]); // Solo recalcula si `number` cambia
+  const increment = useCallback(() => setCount((prev) => prev + 1), []);
 
   return (
     <div>
-      <h1>Número: {number} </h1>
-      <h2>Cuadrado: {squaredNumber} </h2>
-      <button onClick={() => setNumber(number + 1)}> Incrementar </button>
+      <p>Contador: {count}</p>
+      <button onClick={increment}>Incrementar</button>
     </div>
   );
 }
-
 
 export default FunctionalComponent;
