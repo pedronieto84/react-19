@@ -11,7 +11,7 @@ function App() {
     <nav>
       <ul>
         <li>
-          <Link to="/">useCallback</Link>
+          <Link to="/">useContext</Link>
         </li>
       </ul>
     </nav>
