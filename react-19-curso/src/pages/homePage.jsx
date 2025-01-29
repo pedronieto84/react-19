@@ -4,6 +4,7 @@ import data from "../mock-data/mock-data"
 import SearchComponent from "../components/searchComponent";
 import { useState } from "react";
 import filteredItemsHook  from "../hooks/filteredItemsHook";
+import { Link } from "react-router-dom";
 
 export default function HomePage() {
 
@@ -29,7 +30,8 @@ export default function HomePage() {
                 <ul className="list-group">
                     {
                         filteredData.map((item, index) => (
-                            <li key={index} className="list-group-item">{item.title}</li>
+                            <li  key={index} className="list-group-item">
+                                <Link to={`/detail/${item.id.toString()}`}>{item.title}</Link></li>
                         ))
                     }
                 </ul>
