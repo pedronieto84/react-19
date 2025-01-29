@@ -1,7 +1,42 @@
-export default function CardDetailComponent() {
+import {Link } from 'react-router-dom'
+
+export default function CardDetailComponent(props) {
     return (
-      <div>
-        <h1>Card Detail Component</h1>     
-     </div>
+     
+        < >
+        <div className="jumbotron text-center">
+        <h1 className="display-4">{props.title}</h1>
+        <hr className="my-4" />
+  
+        <ul className="list-group list-group-flush">
+              {
+                props.info.map(( each, index )=> {
+                    return (
+                       <div key={ index.toString() }>
+                        <li className="list-group-item"> { each }</li>
+                      </div>
+                    )
+                })
+              }
+        </ul>
+  
+        <ul>
+              {
+                  props.tags.map(( each, index )=> {
+                    return (
+                       <span  className="p-5" key={ index.toString() }>
+                        <span className="badge badge-pill badge-info"> { each }</span>
+                      </span>
+                    )
+                })
+              }
+        </ul>
+            <img src={ props.img } />
+            <p className="lead">
+            
+            <Link className="fixed-bottom btn btn-primary btn-lg" to={'/'}>Tornar</Link>
+          </p>
+        </div>
+        </>
     )
 }
