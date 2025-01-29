@@ -3,7 +3,7 @@
 import data from "../mock-data/mock-data"
 import SearchComponent from "../components/searchComponent";
 import { useState } from "react";
-import {filterItemsHook } from "../hooks/filterItemsHook";
+import filteredItemsHook  from "../hooks/filteredItemsHook";
 
 export default function HomePage() {
 
@@ -16,8 +16,8 @@ export default function HomePage() {
     // Defino el hanlde event, por ahora lo logueo
     const filterMethod = (event) => {
         
-        //const keyboardValue = event.target.value;
-        const filteredItems = filterItemsHook(initialArray)
+        const searchText = event.target.value;
+        const filteredItems = filteredItemsHook(initialArray, searchText)
         setFilteredData(filteredItems)
     }
 
