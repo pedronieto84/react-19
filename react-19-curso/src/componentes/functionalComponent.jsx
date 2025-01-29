@@ -1,28 +1,21 @@
-// Uso de useId
-import {  useId } from "react";
 
-function EmailInput({name}) {
+import getData from './../hooks/getData.js'
 
-  const id= useId()
-  console.log('id', id);
-  return (
-    <>
-    <label htmlFor={id}>{name}</label>
-    <input id={id} type="email" />
-    </>
-  )
-}
 
 const FunctionalComponent = () => {
+  const data = getData()
+  console.log(data);
   
   return (
     <>
-      <h1>Componente Funcional</h1>
-      <EmailInput name="Email" />
-      <br />
-      <br />
-
-      <EmailInput name="Confirm Email" />
+        <h1>Usuarios</h1>
+        <ul>
+            {data.map((user, index) => (
+                <li key={index}>
+                    {user.nombre} - {user.edad}
+                </li>
+            ))} 
+        </ul>
     </>
   )
 }
