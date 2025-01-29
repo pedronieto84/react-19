@@ -1,6 +1,7 @@
 
 
 import data from "../mock-data/mock-data"
+import SearchComponent from "../components/searchComponent";
 
 export default function HomePage() {
 
@@ -10,6 +11,7 @@ export default function HomePage() {
     return (
         <div className="d-flex justify-content-center align-items-center" >
             <div className="container">
+            <SearchComponent />
                 <ul className="list-group">
                     {
                         mockData.map((item, index) => (
