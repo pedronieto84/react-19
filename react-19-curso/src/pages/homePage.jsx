@@ -2,12 +2,14 @@
 
 import data from "../mock-data/mock-data"
 import SearchComponent from "../components/searchComponent";
+import { useState } from "react";
 
 export default function HomePage() {
 
-    const mockData = data
+    
+    const [filteredData, setFilteredData] = useState(data);
 
-    console.log(mockData);
+    console.log(filteredData);
 
     // Defino el hanlde event, por ahora lo logueo
     const filterMethod = (event) => {
@@ -21,7 +23,7 @@ export default function HomePage() {
             <SearchComponent filterMethod={filterMethod}/>
                 <ul className="list-group">
                     {
-                        mockData.map((item, index) => (
+                        filteredData.map((item, index) => (
                             <li key={index} className="list-group-item">{item.title}</li>
                         ))
                     }
