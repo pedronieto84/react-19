@@ -10,18 +10,7 @@ function App() {
   return (
     <>
       <Router>
-        <nav>
-          <ul>
-
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to={`/detail/${id}`}>Detalle</Link>
-            </li>
-           
-          </ul>
-        </nav>
+     
 
 
         <Routes>
