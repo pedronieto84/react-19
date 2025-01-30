@@ -22,19 +22,25 @@ export default function HomePage() {
         setFilteredData(filteredItems)
     }
 
+
+
     return (
         <div className="d-flex justify-content-center align-items-center" >
             <div className="container">
             
             <SearchComponent filterMethod={filterMethod}/>
-                <ul className="list-group">
-                    {
-                        filteredData.map((item, index) => (
-                            <li  key={index} className="list-group-item">
-                                <Link to={`/detail/${item.id.toString()}`}>{item.title}</Link></li>
-                        ))
-                    }
-                </ul>
+            {filteredData.length === 0 ? ( // Condición para verificar si el array está vacío
+                    <p>No hay datos</p> // Mensaje que se muestra si no hay datos
+                ) : (
+                    <ul className="list-group">
+                        {filteredData.map((item, index) => (
+                            <li key={index} className="list-group-item">
+                                <Link to={`/detail/${item.id.toString()}`}>{item.title}</Link>
+                            </li>
+                        ))}
+                    </ul>
+                )}
+                
             </div>
         </div>
     )
