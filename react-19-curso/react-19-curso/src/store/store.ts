@@ -1,11 +1,11 @@
-// // src/store/store.js
+// src/store/store.js
 
-// import { createStore } from "redux";
-// import counterReducer from "./reducers";
+import { createStore } from "redux";
+import counterReducer from "./reducers";
 
 
-// const store = createStore(counterReducer,
-//     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-// );
+const store = createStore(counterReducer,
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
 
-// export default store;
+export default store;
