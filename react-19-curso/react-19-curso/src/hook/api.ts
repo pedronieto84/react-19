@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { Post } from './../interfaces/interfaces';
 
 const api = axios.create({
   baseURL: 'https://jsonplaceholder.typicode.com', // URL base de la API
@@ -8,7 +9,7 @@ const api = axios.create({
 export const getPosts = async () => {
   try {
     const response = await api.get('/posts');
-    return response.data;
+    return response.data as Post[];
   } catch (error) {
     console.error('Error fetching posts:', error);
     throw error;
@@ -19,7 +20,7 @@ export const getPosts = async () => {
 export const postPost = async (post: { title: string; body: string }) => {
   try {
     const response = await api.post('/posts', post);
-    return response.data;
+    return response.data as Post
   } catch (error) {
     console.error('Error posting post:', error);
     throw error;
@@ -30,7 +31,7 @@ export const postPost = async (post: { title: string; body: string }) => {
 export const deletePost = async (id: number) => {
   try {
     const response = await api.delete(`/posts/${id}`);
-    return response.data;
+    return response.data as Post
   } catch (error) {
     console.error('Error deleting post:', error);
     throw error;
@@ -41,7 +42,7 @@ export const deletePost = async (id: number) => {
 export const putPost = async (id: number, post: { title: string; body: string }) => {
   try {
     const response = await api.put(`/posts/${id}`, post);
-    return response.data;
+    return response.data as Post
   } catch (error) {
     console.error('Error updating post:', error);
     throw error;
