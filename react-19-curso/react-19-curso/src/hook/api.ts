@@ -48,3 +48,15 @@ export const putPost = async (id: number, post: { title: string; body: string })
     throw error;
   }
 }
+
+// Función para obtener un post
+export const getPost = async (id:number) => {
+    try {
+      const response = await api.get(`post/${id}`);
+      return response.data as Post;
+    } catch (error) {
+      console.error('Error fetching posts:', error);
+      throw error;
+    }
+  };
+  
