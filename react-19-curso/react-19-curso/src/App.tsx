@@ -1,13 +1,20 @@
 
 import './App.css'
 import Counter from './components/Counter'
+//import { Provider } from "react-redux";
+//import store from './store/store';
+import React from "react";
 
 function App() {
- 
+
 
   return (
     <>
-    <Counter />
+      <React.StrictMode>
+        
+          <Counter />
+    
+      </React.StrictMode>
     </>
   )
 }
