@@ -1,8 +1,6 @@
 import { INCREMENT, DECREMENT } from "./actions";
+import { IState } from "../interfaces/interfaces";
 
-interface IState {
-  count: number
-}
 
 const initialState:IState = {
   count: 0,

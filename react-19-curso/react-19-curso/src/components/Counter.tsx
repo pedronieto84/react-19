@@ -1,9 +1,10 @@
 import { useSelector, useDispatch } from "react-redux";
 import { increment, decrement } from "../store/actions";
+import { IState } from "../interfaces/interfaces";
 
 const Counter = () => {
 
-    const count = useSelector((state) => state.count);
+    const count = useSelector((state: IState) => state.count);
     const dispatch = useDispatch();
     return (
         <div style={{ textAlign: "center" }}>
