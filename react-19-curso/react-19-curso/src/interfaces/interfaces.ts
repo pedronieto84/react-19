@@ -1,6 +1,6 @@
 export interface IState {
     count: number,
-    posts: string[],
+    posts: Post[],
     loading: boolean,
     error: string | null
   }
