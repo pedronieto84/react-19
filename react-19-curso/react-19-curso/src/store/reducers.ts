@@ -4,6 +4,9 @@ import { IState } from "../interfaces/interfaces";
 
 const initialState:IState = {
   count: 0,
+  posts: [],
+  loading: false,
+  error: "",
 };
 
 const counterReducer = (state = initialState, action: { type: string }): IState => {
