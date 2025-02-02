@@ -1,0 +1,23 @@
+lockfileVersion: '9.0'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
+importers:
+
+  .:
+    dependencies:
+      better-dni:
+        specifier: ^4.4.2
+        version: 4.4.2
+
+packages:
+
+  better-dni@4.4.2:
+    resolution: {integrity: sha512-T8Tg0LxpcLOepm/zGvwpc5dj2jznRoZOaUQOueY8PS/S5iIJRy9RKo4nBGDoxLvbnYAZaLdQIFzvSAGV9BaVUg==}
+    engines: {node: '>=10'}
+
+snapshots:
+
+  better-dni@4.4.2: {}
