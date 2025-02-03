@@ -1,9 +1,23 @@
-// Arrays y tuplas
-let numeros: number[] = [1, 2, 3, 4, 5];
-let nombres: string[] = ["Ana", "Luis", "Pedro"];
+// SI defino una interface o un type, puedo reutilizar la estructura
 
-// Tuplas (array con tipos fijos)
-let persona: [string, number] = ["Carlos", 30];
+// Interface
+interface Persona {
+    nombre: string
+    apellido?: string
+    edad: number
+    activo?: boolean // Opcional
+    nombreCompleto?():string, // Funcion opcional
+    presentarse?(mensajeOpcional?:string):string
+    parejas?: Persona[]
+}
+  
+let usuario: Persona = { nombre: "Luis", edad: 28 };
+
+
+// Type
+type ID = string | number;
+let idUsuario: ID = 123;
+type PersonaType = { nombre: string, edad: number }; // Son muy similares a los interfaces
 
 
 
