@@ -1,18 +1,22 @@
 
 
-// Tipado de datos básico
+// Objetos
 
-let nombre: string = "Juan";
-let edad: number = 25;
-let activo: boolean = true;
+const persona: {nombre: string, edad: number, DNI: string} = {
+    nombre : 'Fernando',
+    edad: 30, // si quito la edad, me da error porque falta edad
+    DNI: '12345678Z'
+}
 
-// Tipado de datos especiales
-let desconocido: unknown = "puede ser cualquier cosa" // Pero no me dejará acceder a propiedades de este tipo de dato
-const propiedadDeDesconocido = desconocido.propiedad // Error
-let nulo: null = null;
-let indefinido: undefined = undefined;
-let cualquierCosa: any = 42 //Digamos que deshabilita el tipado de Typescript y hace que opere como si fuera javascript
+// Objetos con parámetros opcionales
+const persona2: {nombre: string, edad: number, DNI?: string} = {
+    nombre : 'Fernando',
+    edad: 30
+    // DNI: '12345678Z' // si quito el DNI, no me da error porque es opcional
+}
 
-// Or
-let nombreOpcional: string | undefined = undefined;
+
+
+
+
 
