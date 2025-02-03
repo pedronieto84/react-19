@@ -1,36 +1,47 @@
-// Generics <T> en TypeScript se usa para trabajar con un dato genérico, es decir, se lo defino cuando uso la función o clase.
-function identidad<T>(valor: T): T {
-    return valor;
-  }
-  
-  let numero = identidad<number>(42);
-  let texto = identidad<string>("Hola");
+// Estructuras complejas de objetos
 
-
-  // Se usa sobretodo en Promsesas y Observables principalmente
-  // VEAMOS EJEMPLO
-  function fetchData<T>(url: string): Promise<T> {
-    return new Promise<T>((resolve, reject) => {
-      setTimeout(() => {
-        try {
-          const data = { mensaje: "Datos obtenidos", exito: true } as T;
-          resolve(data);
-        } catch (error) {
-          reject("Error al obtener los datos");
-        }
-      }, 1000);
-    });
-  }
+type Datos = {
+    [key: string]: string;
+  };
   
-  // Uso con un tipo específico, por ejemplo, se que tipo de dato voy a recibir del back
-  interface UserStatus {
-    email: string;
-    verified: boolean;
-  }
+  const usuario: Datos = {
+    nombre: "Juan",
+    email: "juan@example.com",
+    ciudad: "Madrid",
+  };
   
-  // Autollamo la promesa y vemos como resultado ya ha inferido el tipo de dato UserStatus correctamente
-  (async ()=>{
-    const resultado =  await fetchData<UserStatus>("https://api.example.com/data")
-    console.log('resultado', resultado); })()
+// Cuando el key es un number
+type Datos2 = {
+    [key: number]: string;
+  };
+  
+  const usuario2: Datos2 = {
+    1: "Juan",
+    2: "Luis"
+}
 
-    
+// Cuando el key es un template literal
+type Datos3 = {
+    [key: `user_${number}`]: string;
+  };
+  
+  const usuario3: Datos3 = {
+    user_1: "Juan",
+    user_2: "Luis",
+    nombre: "Juan", // fijaros que esto da error
+  };
+
+  // Flexible
+  type Flexible = {
+    [key: string]: string | number | boolean | {nombre: string, edad: number};
+  };
+  
+  const config: Flexible = {
+    modoOscuro: true,
+    volumen: 80,
+    usuario: "Alice",
+    datos: {
+      nombre: "Alice",
+      edad: 30,
+    },
+  };
