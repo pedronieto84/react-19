@@ -1,13 +1,10 @@
+// Arrays y tuplas
+let numeros: number[] = [1, 2, 3, 4, 5];
+let nombres: string[] = ["Ana", "Luis", "Pedro"];
 
+// Tuplas (array con tipos fijos)
+let persona: [string, number] = ["Carlos", 30];
 
-// FUnciones con numero indeterminado de parametros
-
-function registrarUsuario(nombre: string, ...roles: string[]) {
-    console.log(`Usuario: ${nombre}`);
-    console.log(`Roles: ${roles.join(", ")}`);
-  }
-  
-  registrarUsuario("Juan", "Admin", "Editor");
 
 
 
