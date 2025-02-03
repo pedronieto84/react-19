@@ -1,2 +1,5 @@
-let nombre: string = 'Juan';
-console.log('hola', nombre);
+import sumar from './mates/sumar';
+
+
+
+console.log('sumar', sumar(2,2));
