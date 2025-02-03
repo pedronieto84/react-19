@@ -1,13 +1,20 @@
-// Veamos el uso de la keyword "IN" en otro ejemplo de objeto complejo
-type Estados = "pendiente" | "aprobado" | "rechazado";
+interface Usuario {
+    nombre: string;
+    edad: number;
+    saludar(): string;
+  }
+  
+  class Cliente implements Usuario {
+    constructor(public nombrse: string, public edad: number) {}
+  
+    saludar(): string {
+      return `Hola, mi nombre es  y tengo ${this.edad} años.`;
+    }
 
-type Pedidos = {
-  [estado in Estados]: number;
-};
-
-const pedidos: Pedidos = {
-  pendiente: 10,
-  aprobado: 5,
-  rechazado: 2,
-  australia: 2
-};
+    // Puedo añadir mas metodos, no hay problema, pero si no esta 
+    // Saludar o las propiedades nombre y edad, dara error
+  
+  }
+  
+  const cliente1 = new Cliente("Ana", 30);
+  console.log(cliente1.saludar()); // "Hola, mi nombre es Ana y tengo 30 años."
