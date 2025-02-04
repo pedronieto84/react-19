@@ -1,27 +1,40 @@
 import TableComponent from "../components/TableComponent";
 import { FlexibleObjectTable } from "./../types/types";
-import { getKeysFromArrayOfObjects }  from "../hooks/getKeysFromArrayOfObjects";
-import {  useState } from "react";
+import { getKeysFromArrayOfObjects } from "../hooks/getKeysFromArrayOfObjects";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 function TablePage() {
-  // const data: FlexibleObjectTable[] = [
-  //   { id: 1, name: "Juan Pérez", age: 25, email: "juan@example.com" },
-  //   { id: 2, name: "María Gómez", age: 30, email: "maria@example.com" },
-  //   { id: 3, name: "Carlos López", age: 28, email: "carlos@example.com" },
-  //   { id: 4, name: "Ana Martínez", age: 22, email: "ana@example.com" },
-  // ];
 
-    // Data state donde almacenaré la response de la api
-    const [data, setData] = useState<FlexibleObjectTable[]>([]);
 
-    // Para gestionar el estado de loading y error
-    const [loading, setLoading] = useState<boolean>(true);
-    const [error, setError] = useState<string | null>(null);
+  // Data state donde almacenaré la response de la api
+  const [data, setData] = useState<FlexibleObjectTable[]>([]);
 
-  
-  
+  // Para gestionar el estado de loading y error
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
 
-  const columns:string[] = getKeysFromArrayOfObjects(data);
+  // Fetch data from the Pokémon API
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          "https://pokeapi.co/api/v2/pokemon?limit=10"
+        );
+        setData(response.data.results); // Store the list of Pokémon
+        setLoading(false); // Set loading to false
+      } catch (error) {
+        const errorString = new Error(String(error)); // Convertir el error a un objeto `Error`
+        console.error(error);
+        setError(errorString.message); // Handle errors
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const columns: string[] = getKeysFromArrayOfObjects(data);
 
   return (
     <>
