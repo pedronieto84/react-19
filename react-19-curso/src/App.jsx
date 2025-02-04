@@ -16,17 +16,12 @@ function App() {
       <nav>
         <ul>
           <li>
-            <Link to="/dinamica/1">Usuario 1</Link>
+            <Link to="/dinamica/1/post/1">Usuario 1 - Post 1</Link>
           </li>
         </ul>
       </nav>
-
-      {/* Botón para navegar */}
-      <button onClick={goToUserProfile}>Ver perfil del usuario 1</button>
-
-      {/* Definición de rutas */}
       <Routes>
-        <Route path="/dinamica/:id" element={<Dinamica />} />
+        <Route path="/dinamica/:userId/post/:postId" element={<Dinamica />} />
       </Routes>
       
     </div>

@@ -1,11 +1,15 @@
 import { useParams } from "react-router-dom"
 
 function Dinamica() {
-    const { id } = useParams()
+  const { userId, postId } = useParams();
+    
     return (
       <>
-        <h1>Dinámica</h1>
-        <p>Esta es una página dinámica {id}</p>
+           <div>
+        <h1>Post del Usuario</h1>
+        <p>ID del usuario: {userId}</p>
+        <p>ID del post: {postId}</p>
+    </div>
       </>
     )
   }
