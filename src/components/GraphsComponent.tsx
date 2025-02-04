@@ -39,6 +39,7 @@ ChartJS.register(
 };
 
 // Etiquetas para el eje X
+console.log('props',dataProps, labelsProps);
 
  const labels = labelsProps;
 

@@ -14,7 +14,7 @@ function GraphsPage() {
   const [error, setError] = useState<string | null>(null);
 
   // Creo un estado para forcar un reload de la api
-  const[ reload, setReload] = useState<number>(0);
+  const[ reload, setReload] = useState<number>(10);
 
   interface UserFromBeeceptor {
     id: number;
@@ -31,19 +31,24 @@ function GraphsPage() {
   }
 
 
-  
+
+  function generarArrayIncremental(inicio:number, longitud = 10) {
+    return Array.from({ length: longitud }, (_, index) => inicio + index);
+  }
 
    // Fetch data 
    useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get<UserFromBeeceptor[]>(
-          "https://fake-json-api.mock.beeceptor.com/users?limit=10"
-        ); // AxiosResponse devuele una interfaz donde en la propiedad data captura el genérico que le hemos pasado
-        console.log('response.data.results', response.data);
-        const results = response.data
-        const labels: string[] = results.map((user) => user.id.toString());
-        const data: number[] = results.map((user) => user.email.length);
+        // const response = await axios.get<UserFromBeeceptor[]>(
+        //   "https://fake-json-api.mock.beeceptor.com/users?limit=10"
+        // ); 
+        
+        // Voy a ignorar el response ya que voy a forzar manualmente un array controlado por mi
+       // const results = response.data
+      
+        const labels: string[] = generarArrayIncremental(1,reload).map((item) => item.toString());
+        const data: number[] = generarArrayIncremental(1,reload)
         console.log('labels y data', labels, data);
         setData(data); 
         setLabels(labels)
@@ -57,9 +62,9 @@ function GraphsPage() {
         console.log('finally');
         // Creo una lógica para forzar un reload de la api
         setTimeout(() => {
-
+          setReload(reload + 1);
         }, 5000);
-        setReload(reload + 1);
+        
       }
     };
 
