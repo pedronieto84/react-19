@@ -1,5 +1,5 @@
 
-function PageTable() {
+function TablePage() {
  
 
     return (
@@ -9,4 +9,4 @@ function PageTable() {
     )
   }
   
-  export default PageTable
+  export default TablePage

@@ -1,5 +1,5 @@
 
-function GraphsTable() {
+function GraphsPage() {
  
 
     return (
@@ -9,4 +9,4 @@ function GraphsTable() {
     )
   }
   
-  export default GraphsTable
+  export default GraphsPage

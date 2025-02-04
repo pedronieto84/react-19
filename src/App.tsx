@@ -1,5 +1,7 @@
 
 import './App.css'
+import GraphsPage from './pages/GraphsPage'
+import TablePage from './pages/TablePage'
 
 function App() {
  
@@ -24,17 +26,12 @@ function App() {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
             <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="#">Inicio</a>
+              <a className="nav-link active" aria-current="page" href="#">Graficos</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">Acerca de</a>
+              <a className="nav-link" href="#">Tablas</a>
             </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">Servicios</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">Contacto</a>
-            </li>
+           
           </ul>
         </div>
       </div>
