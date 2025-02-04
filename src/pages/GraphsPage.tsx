@@ -6,7 +6,7 @@ import axios from "axios";
 function GraphsPage() {
  
   // Data state donde almacenaré la response de la api
-  const [data, setData] = useState<FlexibleObjectTable[]>([]);
+  const [data, setData] = useState<number[]>([]);
   const [labels, setLabels] = useState<string[]>([]);
 
   // Para gestionar el estado de loading y error
@@ -27,18 +27,23 @@ function GraphsPage() {
     photo: string;
   }
 
+
+  
+
    // Fetch data 
    useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(
+        const response = await axios.get<UserFromBeeceptor[]>(
           "https://fake-json-api.mock.beeceptor.com/users?limit=10"
-        );
-        const results: UserFromBeeceptor[] = response.data.results;
+        ); // AxiosResponse devuele una interfaz donde en la propiedad data captura el genérico que le hemos pasado
+        console.log('response.data.results', response.data);
+        const results = response.data
         const labels: string[] = results.map((user) => user.id.toString());
         const data: number[] = results.map((user) => user.email.length);
+        console.log('labels y data', labels, data);
         setData(data); 
-        setData(labels)
+        setLabels(labels)
         setLoading(false); // Set loading to false
       } catch (error) {
         const errorString = new Error(String(error)); // Convertir el error a un objeto `Error`
@@ -58,7 +63,7 @@ function GraphsPage() {
       <>
       
        <h1 className='card'>Gráficos</h1>
-       <GraphsComponent data={data} labels={labels}/>
+       <GraphsComponent dataProps={data} labelsProps={labels}/>
       </>
     )
   }

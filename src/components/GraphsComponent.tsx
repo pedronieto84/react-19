@@ -16,8 +16,8 @@ function GraphsComponent({
   dataProps,
   labelsProps,
 }: {
-  data: number[],
-  labels: string[]
+  dataProps: number[],
+  labelsProps: string[]
 }) {
 
 // Registro de los plugins de Chart.js
@@ -40,7 +40,7 @@ ChartJS.register(
 
 // Etiquetas para el eje X
 
-const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+ const labels = labelsProps;
 
  const data = {
   labels,
@@ -48,12 +48,13 @@ const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
     {
       fill: true, // Si rellena o no el area de abajo
       label: 'Dataset 2', // Nombre del set
-      data: labels.map(() => Math.floor(Math.random() * 10) + 1),
+      data: dataProps, // Datos
       borderColor: 'rgb(53, 162, 235)', // esto lo puedo quitar y escoge otro color por default
       backgroundColor: 'rgba(53, 162, 235, 0.5)', // tambien puedo quitarlo o cambiarlo
     },
   ],
 };
+console.log(labels,data.datasets[0].data);
  
 
     return (
