@@ -13,6 +13,9 @@ function GraphsPage() {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
+  // Creo un estado para forcar un reload de la api
+  const[ reload, setReload] = useState<number>(0);
+
   interface UserFromBeeceptor {
     id: number;
     name: string;
@@ -50,11 +53,18 @@ function GraphsPage() {
         console.error(error);
         setError(errorString.message); // Handle errors
         setLoading(false);
+      } finally {
+        console.log('finally');
+        // Creo una lógica para forzar un reload de la api
+        setTimeout(() => {
+
+        }, 5000);
+        setReload(reload + 1);
       }
     };
 
     fetchData();
-  }, []);
+  }, [reload]);
 
   if (loading) return <div className='card'>Cargando...</div>;
   if (error) return <div className='card'>{error}</div>;
