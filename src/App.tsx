@@ -1,10 +1,11 @@
 
 import './App.css'
-import FormsPage from './pages/FormsComponent';
+import FormsPage from './pages/FormsPage';
 import GraphsPage from './pages/GraphsPage'
 import TablePage from './pages/TablePage'
 import { Navbar, Nav, Container } from "react-bootstrap";
 import {  BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import LoginPage from './pages/LoginPage';
 function App() {
  
 
@@ -20,6 +21,7 @@ function App() {
               <Nav.Link as={Link} to="/table">Tablas</Nav.Link>
               <Nav.Link as={Link} to="/graphs">Gráficos</Nav.Link>
               <Nav.Link as={Link} to="/forms">Formularios</Nav.Link>
+              <Nav.Link as={Link} to="/login">Login</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Navbar>
@@ -28,6 +30,7 @@ function App() {
             <Route path="/table" element={<TablePage />} />
             <Route path="/graphs" element={<GraphsPage />} />
             <Route path="/forms" element={<FormsPage />} />
+            <Route path="/login" element={<LoginPage />} />
             <Route path="/" element={<h2>Escoge una opción</h2>} />
           </Routes>
         </div>
