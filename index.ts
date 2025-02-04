@@ -1,14 +1,16 @@
-// Un type que evalue números de fibonacci
+// Definimos una aproximación de π
+type Pi = 3.14159;
 
-// Definimos los primeros números de Fibonacci como tipos literales
-type Fibonacci = 0 | 1 | 2 | 3 | 5 | 8 | 13 | 21 | 34 | 55 | 89 | 144;
-
-// Función que acepta solo números de Fibonacci
-function acceptFibonacciNumber(num: Fibonacci): void {
-    console.log(`Número de Fibonacci aceptado: ${num}`);
+// Función que acepta solo el valor de π
+function acceptPi(value: Pi): void {
+    console.log(`Valor de π aceptado: ${value}`);
 }
 
-// Ejemplos de uso
-acceptFibonacciNumber(0);    // Válido
-acceptFibonacciNumber(144);  // Válido
+// Ejemplo de uso
+acceptPi(3.14159);  // Válido
+
+// Esto dará un error de TypeScript
+// acceptPi(3.14);  // Error: Argument of type '3.14' is not assignable to parameter of type '3.14159'.
+// Menos dígitos
+acceptPi(3.14)
 
