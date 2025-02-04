@@ -1,6 +1,7 @@
 import TableComponent from "../components/TableComponent";
 import { FlexibleObjectTable } from "./../types/types";
 import { getKeysFromArrayOfObjects }  from "../hooks/getKeysFromArrayOfObjects";
+import { useEffect, useState } from "react";
 
 function TablePage() {
   const data: FlexibleObjectTable[] = [
@@ -10,7 +11,7 @@ function TablePage() {
     { id: 4, name: "Ana Martínez", age: 22, email: "ana@example.com" },
   ];
 
-  // Función para obtener todas las claves únicas de los objetos
+  
   
 
   const columns:string[] = getKeysFromArrayOfObjects(data);
