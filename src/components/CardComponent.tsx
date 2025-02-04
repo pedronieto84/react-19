@@ -1,14 +1,14 @@
 
 import { Card } from "react-bootstrap";
 
-const CardsComponent = ({pokeCard}) => {
+const CardComponent = ({pokemon}) => {
 
     
   return (
     <Card className="h-100 shadow-sm">
-      <Card.Img variant="top" src={user.photo} alt={user.name} />
+      <Card.Img variant="top" src={pokemon.photo} alt={pokemon.name} />
       <Card.Body>
-        <Card.Title>{user.name}</Card.Title>
+        <Card.Title>{pokemon.name}</Card.Title>
         
       </Card.Body>
     </Card>

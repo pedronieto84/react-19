@@ -23,7 +23,7 @@ function App() {
               <Nav.Link as={Link} to="/graphs">Gráficos</Nav.Link>
               <Nav.Link as={Link} to="/forms">Formularios</Nav.Link>
               <Nav.Link as={Link} to="/login">Login</Nav.Link>
-              <Nav.Link as={Link} to="/cards">Login</Nav.Link>
+              <Nav.Link as={Link} to="/cards">Cards</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Navbar>
@@ -33,7 +33,7 @@ function App() {
             <Route path="/graphs" element={<GraphsPage />} />
             <Route path="/forms" element={<FormsPage />} />
             <Route path="/login" element={<LoginPage />} />
-            <Route path="/careds" element={<CardsPage />} />
+            <Route path="/cards" element={<CardsPage />} />
             <Route path="/" element={<h2>Escoge una opción</h2>} />
           </Routes>
         </div>
