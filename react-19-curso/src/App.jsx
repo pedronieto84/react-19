@@ -1,37 +1,36 @@
-
-import './App.css'
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import Pagina1 from './paginas/pagina1';
-import Pagina2 from './paginas/pagina2';
+import './App.css';
+import { BrowserRouter, Routes, Route, Link, useNavigate } from 'react-router-dom';
 import Dinamica from './paginas/dinamica';
 
 function App() {
-
-  let id = 1
+  const navigate = useNavigate();
+  
+  // Como esta función está fuera del "Browser"
+  const goToUserProfile = () => {
+    navigate('/dinamica/1');
+  };
 
   return (
-    <Router>
-    <nav>
-      <ul>
-        <li>
-          <Link to="/pagina1">Inicio</Link>
-        </li>
-        <li>
-          <Link to="/pagina2">Acerca de</Link>
-        </li>
-        <li>
-          <Link to={`/dinamica/${id}`}>Dinámica</Link>
-        </li>
-      </ul>
-    </nav>
+    <div>
+      
+      <nav>
+        <ul>
+          <li>
+            <Link to="/dinamica/1">Usuario 1</Link>
+          </li>
+        </ul>
+      </nav>
 
-    <Routes>
-      <Route path="/pagina1" element={<Pagina1 />} />
-      <Route path="/pagina2" element={<Pagina2 />} />
-      <Route path="/dinamica/:id" element={<Dinamica />} />
-    </Routes>
-  </Router>
-  )
+      {/* Botón para navegar */}
+      <button onClick={goToUserProfile}>Ver perfil del usuario 1</button>
+
+      {/* Definición de rutas */}
+      <Routes>
+        <Route path="/dinamica/:id" element={<Dinamica />} />
+      </Routes>
+      
+    </div>
+  );
 }
 
-export default App
+export default App;
