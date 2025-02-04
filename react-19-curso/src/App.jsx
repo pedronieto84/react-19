@@ -16,7 +16,7 @@ function App() {
       <nav>
         <ul>
           <li>
-            <Link to="/dinamica/1/post/1">Usuario 1 - Post 1</Link>
+            <Link to="/dinamica/1/post/1?id=123&filter=active">Usuario 1 - Post 1</Link>
           </li>
         </ul>
       </nav>
