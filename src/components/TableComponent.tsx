@@ -1,11 +1,11 @@
 import Table from "react-bootstrap/Table";
-import { User } from "./../types/types";
+import { FlexibleObjectTable } from "./../types/types";
 
 function TableComponent({
   data,
   columns,
 }: {
-  data: User[];
+  data: FlexibleObjectTable[];
   columns: string[];
 }) {
   return (

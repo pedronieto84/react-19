@@ -4,3 +4,7 @@ export type User = {
     age: number;
     email: string;
 }
+
+export type FlexibleObjectTable = {
+    [key: string]: string | number | boolean;
+}
