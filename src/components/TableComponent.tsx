@@ -1,25 +1,29 @@
 import Table from "react-bootstrap/Table";
 import { User } from "./../types/types";
 
-function TableComponent({ data }: { data: User[] }) {
+function TableComponent({
+  data,
+  columns,
+}: {
+  data: User[];
+  columns: string[];
+}) {
   return (
     <>
       <Table striped bordered hover>
         <thead>
           <tr>
-            <th>Id</th>
-            <th>Age</th>
-            <th>Name</th>
-            <th>Email</th>
+            {columns.map((column) => (
+              <th key={column}>{column.toUpperCase()}</th>
+            ))}
           </tr>
         </thead>
         <tbody>
-          {data.map((person: User) => (
-            <tr key={person.id}>
-              <td>{person.id}</td>
-              <td>{person.name}</td>
-              <td>{person.age}</td>
-              <td>{person.email}</td>
+          {data.map((item, index) => (
+            <tr key={index}>
+              {columns.map((column) => (
+                <td key={column}>{item[column] || "-"}</td>
+              ))}
             </tr>
           ))}
         </tbody>
