@@ -1,4 +1,4 @@
-import React from 'react';
+
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -12,7 +12,13 @@ import {
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 
-function GraphsComponent() {
+function GraphsComponent({
+  dataProps,
+  labelsProps,
+}: {
+  data: number[],
+  labels: string[]
+}) {
 
 // Registro de los plugins de Chart.js
 ChartJS.register(
@@ -29,15 +35,7 @@ ChartJS.register(
 // Opciones del gráfico
  const options = {
   responsive: true,
-  // plugins: {
-  //   legend: {
-  //     position: 'top' as const,
-  //   },
-  //   title: {
-  //     display: true,
-  //     text: 'Gráfico de linea',
-  //   },
-  // },
+ 
 };
 
 // Etiquetas para el eje X
