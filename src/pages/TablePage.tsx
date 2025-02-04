@@ -36,6 +36,9 @@ function TablePage() {
 
   const columns: string[] = getKeysFromArrayOfObjects(data);
 
+  if (loading) return <div className="card">Cargando...</div>;
+  if (error) return <div className="card">{error}</div>;
+
   return (
     <>
       <h1 className="card">Tablas</h1>
