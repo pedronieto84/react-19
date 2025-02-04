@@ -1,5 +1,6 @@
 import TableComponent from "../components/TableComponent";
 import { FlexibleObjectTable } from "./../types/types";
+import { getKeysFromArrayOfObjects }  from "../hooks/getKeysFromArrayOfObjects";
 
 function TablePage() {
   const data: FlexibleObjectTable[] = [
@@ -10,15 +11,9 @@ function TablePage() {
   ];
 
   // Función para obtener todas las claves únicas de los objetos
-  const getUniqueKeys = (data: FlexibleObjectTable[]):string[] => {
-    const keysSet = new Set<string>();
-    data.forEach((item) => {
-      Object.keys(item).forEach((key) => keysSet.add(key));
-    });
-    return Array.from(keysSet);
-  };
+  
 
-  const columns:string[] = getUniqueKeys(data);
+  const columns:string[] = getKeysFromArrayOfObjects(data);
 
   return (
     <>
