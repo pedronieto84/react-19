@@ -1,7 +1,6 @@
 import GraphsComponent from "../components/GraphsComponent"
 import {useState, useEffect} from "react";
-import { FlexibleObjectTable } from "./../types/types";
-import axios from "axios";
+
 
 function GraphsPage() {
  
@@ -16,20 +15,7 @@ function GraphsPage() {
   // Creo un estado para forcar un reload de la api
   const[ reload, setReload] = useState<number>(10);
 
-  interface UserFromBeeceptor {
-    id: number;
-    name: string;
-    company: string;
-    username: string;
-    email: string;
-    address: string;
-    zip: string;
-    state: string;
-    country: string;
-    phone: string;
-    photo: string;
-  }
-
+ 
 
 
   function generarArrayIncremental(inicio:number, longitud = 10) {
