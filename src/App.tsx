@@ -27,7 +27,7 @@ function App() {
           <Routes>
             <Route path="/table" element={<TablePage />} />
             <Route path="/graphs" element={<GraphsPage />} />
-            <Route path="/graphs" element={<FormsPage />} />
+            <Route path="/forms" element={<FormsPage />} />
             <Route path="/" element={<h2>Escoge una opción</h2>} />
           </Routes>
         </div>
