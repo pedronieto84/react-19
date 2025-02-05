@@ -2,7 +2,7 @@
 import { gql, useQuery } from "@apollo/client";
 
 // Define your GraphQL query
-const GET_LAUNCHES = gql`
+const GET_COUNTRIES = gql`
   query {
   countries {
     code
@@ -13,8 +13,16 @@ const GET_LAUNCHES = gql`
 }
 `;
 
+const GET_COUNTRY_CAPITALS = gql`
+    query {
+    countries {
+        capital
+    }
+    }
+    `;
 
-const GraphQlPage = () => {const { loading, error, data } = useQuery(GET_LAUNCHES);
+
+const GraphQlPage = () => {const { loading, error, data } = useQuery(GET_COUNTRY_CAPITALS);
 
 // Handle loading state
 if (loading) return <p>Loading...</p>;
