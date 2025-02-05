@@ -3,7 +3,7 @@ import {  ChatRoomUbicationPersons } from '../types/globalTypes';
 import { useState, useEffect } from 'react';
 import { useGetChatRoomPositions } from '../hooks/getChatRoomPositions';
 import { db } from "./../hooks/firebaseConfig";
-import { collection, onSnapshot, addDoc,  doc, setDoc, increment  } from "firebase/firestore";
+import { collection, onSnapshot, addDoc,  doc, setDoc, increment, orderBy, query  } from "firebase/firestore";
 
 import { auth } from '../hooks/firebaseConfig';
 import ChatComponent from '../components/ChatComponent';
@@ -57,8 +57,8 @@ function ChatRoomPage() {
         const conversationCollection = collection(db, `chats/${id}/chatroom`);
 
         // Crear la consulta con `orderBy` para ordenar por fecha
-        //const conversationQuery = query(conversationCollection, orderBy("date", "asc")); // Puedo pedir la query al back o hacerla en front 
-        const unsubscribe = onSnapshot(conversationCollection, (snapshot) => {
+        const conversationQuery = query(conversationCollection, orderBy("date", "asc")); // Puedo pedir la query al back o hacerla en front 
+        const unsubscribe = onSnapshot(conversationQuery, (snapshot) => {
             const conversation = snapshot.docs.map((doc) => ({
 
                 id: doc.id,

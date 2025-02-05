@@ -13,7 +13,8 @@ function ChatComponent({conversation, updateMessage}) {
 
   // Efecto para hacer scroll hacia abajo cada vez que cambien los mensajes
   useEffect(() => {
-    if (chatContainerRef.currenty) {
+    console.log('useEffect');
+    if (chatContainerRef.current) {
       chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
     }
   }, [conversation]); // Se e
