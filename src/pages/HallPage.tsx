@@ -7,11 +7,14 @@ import { collection, getDocs, onSnapshot } from "firebase/firestore";
 import { auth } from "./../hooks/firebaseConfig";
 import { FirebaseUserWithId } from '../types/globalTypes';
 
+import { useOrderIds } from './../hooks/orderIds';
+
 
 function HallPage() {
 
 
     const [users, setUsers] = useState<{ id: string; email: string }[]>([]);
+    
 
     // Para gestionar el estado de loading y error
     const [loading, setLoading] = useState<boolean>(true);
@@ -24,6 +27,7 @@ function HallPage() {
             console.log("docs", docs);
         } catch (error) {
             console.error("Error adding document:", error);
+            setError("Error al cargar los usuarios");
         }
     };
 
@@ -63,8 +67,8 @@ function HallPage() {
                 <ul className="list-group">
                     {users.map((user) => (
                         
-                        <li key={1} className="list-group-item">
-                            <Link to={`/detail/`}>{user.email}</Link>
+                        <li key={user.id} className="list-group-item">
+                            <Link to={`/chat-room/${useOrderIds(user.id, auth.currentUser?.uid)}`}>{user.email}</Link>
                         </li>
                     ))
                     }
