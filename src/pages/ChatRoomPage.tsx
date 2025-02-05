@@ -3,7 +3,7 @@ import { FirebaseUserWithId, ChatRoomUbicationPersons } from '../types/globalTyp
 import { useState, useEffect } from 'react';
 import { useGetChatRoomPositions } from '../hooks/getChatRoomPositions';
 import { db } from "./../hooks/firebaseConfig";
-import { collection, getDocs, onSnapshot, addDoc } from "firebase/firestore";
+import { collection, getDocs, onSnapshot, addDoc , orderBy, query } from "firebase/firestore";
 
 import { auth } from '../hooks/firebaseConfig';
 import ChatComponent from '../components/ChatComponent';
@@ -22,7 +22,8 @@ function ChatRoomPage() {
 
     const getChatMessages = async () => {
         try {
-            const docs = await getDocs(collection(db, `chats/${id}/chatroom`));
+            
+            
             console.log(docs.docs.map(doc => doc.data()));
             setLoading(false);
             console.log("docs", docs);
@@ -33,6 +34,7 @@ function ChatRoomPage() {
     };
 
     const addData = async (objectOfConversation) => {
+
         try {
           await addDoc(collection(db, `chats/${id}/chatroom`), objectOfConversation);
           console.log("Document added!");
@@ -48,16 +50,21 @@ function ChatRoomPage() {
 
     useEffect(() => {
         // Referencia a la colección "users"
-        const conversationCollection = collection(db, `chats/${id}/chatroom`);
+        
 
         // Suscribirse a los cambios en Firestore
+
+        const conversationCollection = collection(db, `chats/${id}/chatroom`);
+
+// Crear la consulta con `orderBy` para ordenar por fecha
+        //const conversationQuery = query(conversationCollection, orderBy("date", "asc")); // Puedo pedir la query al back o hacerla en front 
         const unsubscribe = onSnapshot(conversationCollection, (snapshot) => {
             const conversation = snapshot.docs.map((doc) => ({
                 
                 id: doc.id,
                 ...doc.data(),
-            })) 
-            console.log('seteo conversacion', conversation);
+            }))
+            console.log('ordeno el array', conversation.sort((a, b) => a.date - b.date) );
             setConversation(conversation);
             setLoading(false);
             

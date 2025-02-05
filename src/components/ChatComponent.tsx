@@ -16,7 +16,7 @@ function ChatComponent({conversation, updateMessage}) {
     const handleSendMessage = () => {
       if (inputText.trim() !== "") {
        // setMessages([...messages, { text: inputText, sender: "user" }]);
-        const newMessage = { text: inputText, sender: "user", date: Date() };
+        const newMessage = { text: inputText, sender: "user", date: Date.now() };
         updateMessage(newMessage);
         //console.log('new message', newMessage);
         setInputText(""); // Limpiar el input después de enviar
@@ -50,7 +50,7 @@ function ChatComponent({conversation, updateMessage}) {
               >
                 <p>
                     <span className="fs-6 fw-bold">{message.text}</span> {"  "}
-                     -<span style={{ fontSize: "0.75rem" }} className="text-muted small">{  moment(message.date).format("HH:mm DD/MM/YY")}</span> </p>  
+                     -<span style={{ fontSize: "0.75rem" }} className="text-muted small">{  moment(message.date).format("HH:mm:ss DD/MM/YY")}</span> </p>  
               </div>
             </div>
           ))}
