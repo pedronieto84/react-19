@@ -21,15 +21,7 @@ function HallPage() {
     const [error, setError] = useState<string | null>(null);
 
 
-    const getUsers = async () => {
-        try {
-            const docs = await getDocs(collection(db, "users"));
-            console.log("docs", docs);
-        } catch (error) {
-            console.error("Error adding document:", error);
-            setError("Error al cargar los usuarios");
-        }
-    };
+   
 
 
 

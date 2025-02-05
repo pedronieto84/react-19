@@ -1,8 +1,8 @@
 import { useState } from "react";
 
-function ChatComponent() {
+function ChatComponent({conversation}) {
 
-
+    console.log('conversation', conversation);
     const [messages, setMessages] = useState([]); // Almacena los mensajes
     const [inputText, setInputText] = useState(""); // Almacena el texto del input
   
