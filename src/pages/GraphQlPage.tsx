@@ -12,17 +12,19 @@ const GET_COUNTRIES = gql`
   }
 }
 `;
+// Hacer consultas graphql dinamicas
+const fields = ["code", "name",  "currency"];
 
-const GET_COUNTRY_CAPITALS = gql`
+const GET_COUNTRY_DATA = gql`
     query {
     countries {
-        capital
+        ${fields.join("\n")}
     }
     }
     `;
 
 
-const GraphQlPage = () => {const { loading, error, data } = useQuery(GET_COUNTRY_CAPITALS);
+const GraphQlPage = () => {const { loading, error, data } = useQuery(GET_COUNTRY_DATA);
 
 // Handle loading state
 if (loading) return <p>Loading...</p>;
