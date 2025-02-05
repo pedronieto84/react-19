@@ -1,6 +1,6 @@
 import { Link, useParams } from 'react-router-dom';
 import {  ChatRoomUbicationPersons } from '../types/globalTypes';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, SetStateAction } from 'react';
 import { useGetChatRoomPositions } from '../hooks/getChatRoomPositions';
 import { db } from "./../hooks/firebaseConfig";
 import { collection, onSnapshot, addDoc,  doc, setDoc, increment, orderBy, query  } from "firebase/firestore";
@@ -15,7 +15,7 @@ function ChatRoomPage() {
         addData(message);
     }
 
-    const [conversation, setConversation] = useState<{ id: string; email: string }[]>([]);
+    const [conversation, setConversation] = useState<{ id: string ;text: string; sender: string; date: number }[]>([]);
     // Para gestionar el estado de loading y error
     const [loading, setLoading] = useState<boolean>(true);
     const [error] = useState<string | null>(null);
@@ -59,14 +59,14 @@ function ChatRoomPage() {
         // Crear la consulta con `orderBy` para ordenar por fecha
         const conversationQuery = query(conversationCollection, orderBy("date", "asc")); // Puedo pedir la query al back o hacerla en front 
         const unsubscribe = onSnapshot(conversationQuery, (snapshot) => {
-            const conversation = snapshot.docs.map((doc) => ({
+            const charla = snapshot.docs.map((doc) => ({
 
                 id: doc.id,
-                ...doc.data(),
+                ...doc.data() as { text: string; sender: string; date: number },
             }))
             
-            const conv = conversation as any
-            setConversation(conv);
+            //const conv = conversation.sort((a,b)=>(a.date - b.date)) as any
+            setConversation(charla);
             setLoading(false);
 
         });
