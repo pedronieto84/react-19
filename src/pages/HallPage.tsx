@@ -7,7 +7,6 @@ import { collection,  onSnapshot } from "firebase/firestore";
 import { auth } from "./../hooks/firebaseConfig";
 import {  signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import { useOrderIds } from './../hooks/orderIds';
 import { FirebaseUserWithId } from '../types/globalTypes';
 
 
@@ -26,7 +25,15 @@ function HallPage() {
         navigate("/");
       };
 
-    
+      const useOrderIds = (userId1:string, userId2:string | null):string => {
+        // Ordenar los strings alfabéticamente
+        const stringsOrdenados = [userId1, userId2].sort();
+      
+        // Unir los strings ordenados con un guion
+        const resultado = stringsOrdenados.join('-');
+      
+        return resultado;
+      }
 
 
 
