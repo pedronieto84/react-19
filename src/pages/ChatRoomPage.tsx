@@ -1,5 +1,5 @@
 function ChatRoomPage() {
-    return ( <><h1>Chat room</h1></> );
+    return ( <></> );
 }
 
 export default ChatRoomPage;

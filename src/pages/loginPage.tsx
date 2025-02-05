@@ -1,7 +1,9 @@
+import LoginFormComponent from "../folder/loginFormComponent";
+
 function LoginPage() {
     return (
         <>
-            Hola</>);
+           <LoginFormComponent /></>);
 }
 
 export default LoginPage;
