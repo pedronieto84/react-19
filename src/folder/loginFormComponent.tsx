@@ -1,6 +1,6 @@
 import { Form, Button } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
-function LoginFormComponent() {
+function LoginFormComponent({formSubmitted}: {formSubmitted: (response: any) => void}) {
 
       // Estados para los campos del formulario
   const [email, setEmail] = useState<string>('');
@@ -50,7 +50,8 @@ function LoginFormComponent() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (isFormValid) {
-      alert('Formulario enviado correctamente.'); // Aquí puedes hacer una llamada API o redireccionar
+        formSubmitted({email, password});
+      // Aquí puedes hacer una llamada API o redireccionar
     }
   };
     return (<>
