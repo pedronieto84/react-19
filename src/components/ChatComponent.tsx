@@ -1,15 +1,22 @@
 import { useState } from "react";
+import { db } from "./../hooks/firebaseConfig";
+import { collection, addDoc } from "firebase/firestore";
 
-function ChatComponent({conversation}) {
+function ChatComponent({conversation, updateMessage}) {
 
     console.log('conversation', conversation);
     const [messages, setMessages] = useState([]); // Almacena los mensajes
     const [inputText, setInputText] = useState(""); // Almacena el texto del input
   
+
+ 
     // Función para manejar el envío de mensajes
     const handleSendMessage = () => {
       if (inputText.trim() !== "") {
-        setMessages([...messages, { text: inputText, sender: "user" }]);
+       // setMessages([...messages, { text: inputText, sender: "user" }]);
+        const newMessage = { text: inputText, sender: "user", date: Date() };
+        updateMessage(newMessage);
+        //console.log('new message', newMessage);
         setInputText(""); // Limpiar el input después de enviar
       }
     };
@@ -24,7 +31,7 @@ function ChatComponent({conversation}) {
           style={{ height: "400px", overflowY: "scroll" }}
         >
           {/* Mostrar mensajes */}
-          {messages.map((message, index) => (
+          {conversation.map((message, index) => (
             <div
               key={index}
               className={`d-flex justify-content-${
