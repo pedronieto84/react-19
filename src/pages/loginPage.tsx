@@ -9,7 +9,6 @@ function LoginPage() {
     const navigate = useNavigate();
 
     const loginFormData = async (response: LoginData) => {
-        console.log(response);
         try {
             const userCredential = await signInWithEmailAndPassword(auth, response.email, response.password);
             console.log("User logged in:", userCredential.user);

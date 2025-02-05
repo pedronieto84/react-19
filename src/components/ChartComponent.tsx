@@ -10,7 +10,6 @@ import {
     Legend,
   } from 'chart.js';
   import { Line } from 'react-chartjs-2';
-import { doc } from 'firebase/firestore';
 
 function ChartComponent(props) {
     function generarArrayIncremental(array) {
@@ -29,7 +28,6 @@ function ChartComponent(props) {
         Legend
       );
 
-    console.log(props.docData);
 
 
     const options = {

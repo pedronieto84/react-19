@@ -1,9 +1,9 @@
 import { Link, useParams } from 'react-router-dom';
-import { FirebaseUserWithId, ChatRoomUbicationPersons } from '../types/globalTypes';
+import {  ChatRoomUbicationPersons } from '../types/globalTypes';
 import { useState, useEffect } from 'react';
 import { useGetChatRoomPositions } from '../hooks/getChatRoomPositions';
 import { db } from "./../hooks/firebaseConfig";
-import { collection, getDocs, onSnapshot, addDoc, orderBy, query, doc, setDoc, increment  } from "firebase/firestore";
+import { collection, onSnapshot, addDoc,  doc, setDoc, increment  } from "firebase/firestore";
 
 import { auth } from '../hooks/firebaseConfig';
 import ChatComponent from '../components/ChatComponent';
@@ -11,27 +11,16 @@ import ChatComponent from '../components/ChatComponent';
 function ChatRoomPage() {
 
     const updateMessage = (message) => {
-        console.log('capturo e lmensaje del comp hijo', message);
+       
         addData(message);
     }
 
     const [conversation, setConversation] = useState<{ id: string; email: string }[]>([]);
     // Para gestionar el estado de loading y error
     const [loading, setLoading] = useState<boolean>(true);
-    const [error, setError] = useState<string | null>(null);
+    const [error] = useState<string | null>(null);
 
-    const getChatMessages = async () => {
-        try {
-
-
-            console.log(docs.docs.map(doc => doc.data()));
-            setLoading(false);
-            console.log("docs", docs);
-        } catch (error) {
-            console.error("Error adding document:", error);
-            setError("Error al cargar los usuarios");
-        }
-    };
+    
 
     const addData = async (objectOfConversation) => {
 
@@ -49,7 +38,6 @@ function ChatRoomPage() {
             const miId = auth.currentUser?.uid as string
             const docRefUser = doc(db, `users`, miId);
             await setDoc(docRefUser, {length: increment(length), sender:increment(sender), total:increment(total)}, { merge: true });
-            console.log("Document added!");
         } catch (error) {
             console.error("Error adding document:", error);
         }
@@ -57,7 +45,7 @@ function ChatRoomPage() {
 
     const { id } = useParams<{ id: string }>()
     const authId = auth.currentUser?.uid as string
-    const [chatRoomIds, setChatRoomIds] = useState<ChatRoomUbicationPersons>(useGetChatRoomPositions(id as string, authId));
+    const [chatRoomIds] = useState<ChatRoomUbicationPersons>(useGetChatRoomPositions(id as string, authId));
 
 
     useEffect(() => {
@@ -77,8 +65,8 @@ function ChatRoomPage() {
                 ...doc.data(),
             }))
             
-            console.log('ordeno el array', conversation.sort((a, b) => a.date - b.date));
-            setConversation(conversation);
+            const conv = conversation as any
+            setConversation(conv);
             setLoading(false);
 
         });

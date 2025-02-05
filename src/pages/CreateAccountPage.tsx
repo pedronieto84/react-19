@@ -26,7 +26,7 @@ function CreateAccountPage() {
     console.log(response);
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, response.email, response.password);
-      const createUser = await addData(response);
+       await addData(response);
       navigate('/hall')
       console.log("User logged in:", userCredential.user);
     } catch (error) {

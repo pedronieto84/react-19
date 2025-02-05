@@ -4,14 +4,10 @@ import { doc, onSnapshot } from "firebase/firestore";
 import { db } from "./../hooks/firebaseConfig";
 
 function ChartPage() {
-    console.log('chartPage');
-    const [docData, setDocData] = useState(null);
     const [loading, setLoading] = useState(true);
 
     const [arrayTotalEscrito, setArrayTotalEscrito] = useState([]);
 
-    // The ID of the document you want to listen to
-    const docId = "user123"; // Replace with your document's ID
 
     useEffect(() => {
         // Reference to the document in Firestore
@@ -22,15 +18,12 @@ function ChartPage() {
             if (docSnap.exists()) {
                 // When the document data changes, update the state
                 const data = docSnap.data();
-                console.log('changes', data.length);
                 const length = data.length;
                 setLoading(false);
-                setDocData(data);
                 
                 // Correctly update the state of arrayTotalEscrito
                 setArrayTotalEscrito((prevArray) => [...prevArray, length]);
 
-                console.log('arrayTotalEscrito', arrayTotalEscrito);
                 
             } else {
                 console.log("No such document!");

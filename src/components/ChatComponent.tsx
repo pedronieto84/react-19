@@ -1,21 +1,19 @@
 import { useState, useRef, useEffect } from "react";
 
 import moment from "moment";
-import { db } from "./../hooks/firebaseConfig";
-import { collection, addDoc } from "firebase/firestore";
+
 import{auth} from './../hooks/firebaseConfig';
 
 function ChatComponent({conversation, updateMessage}) {
 
-    console.log('conversation', conversation);
     
     const [inputText, setInputText] = useState(""); // Almacena el texto del input
 
-    const chatContainerRef = useRef(null);
+    const chatContainerRef = useRef(null) as any
 
   // Efecto para hacer scroll hacia abajo cada vez que cambien los mensajes
   useEffect(() => {
-    if (chatContainerRef.current) {
+    if (chatContainerRef.currenty) {
       chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
     }
   }, [conversation]); // Se e
@@ -29,7 +27,6 @@ function ChatComponent({conversation, updateMessage}) {
        // setMessages([...messages, { text: inputText, sender: "user" }]);
         const newMessage = { text: inputText, sender: miId as string , date: Date.now() };
         updateMessage(newMessage);
-        //console.log('new message', newMessage);
         setInputText(""); // Limpiar el input después de enviar
       }
     };

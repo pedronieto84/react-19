@@ -3,22 +3,21 @@ import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 
 import { db } from "./../hooks/firebaseConfig";
-import { collection, getDocs, onSnapshot } from "firebase/firestore";
+import { collection,  onSnapshot } from "firebase/firestore";
 import { auth } from "./../hooks/firebaseConfig";
-import { getAuth, signOut } from "firebase/auth";
+import {  signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { useOrderIds } from './../hooks/orderIds';
+import { FirebaseUserWithId } from '../types/globalTypes';
 
 
 function HallPage() {
 
 
     const [users, setUsers] = useState<{ id: string; email: string }[]>([]);
-    
 
     // Para gestionar el estado de loading y error
     const [loading, setLoading] = useState<boolean>(true);
-    const [error, setError] = useState<string | null>(null);
 
     const navigate = useNavigate();
     const handleButtonClick = async () => {
@@ -26,6 +25,8 @@ function HallPage() {
         await signOut(auth)
         navigate("/");
       };
+
+    
 
 
 
@@ -52,8 +53,11 @@ function HallPage() {
     }, []);
 
 
-    if (loading) return <div className='card'>Cargando...</div>;
-    if (error) return <div className='card'>{error}</div>;
+    
+    
+    if (loading) return <div className='card'>Cargando...</div>
+
+
     return (
         <div className="d-flex justify-content-center align-items-center" >
             <div className="container">
