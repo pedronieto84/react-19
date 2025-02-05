@@ -1,11 +1,13 @@
 import { useState } from "react";
+
+import moment from "moment";
 import { db } from "./../hooks/firebaseConfig";
 import { collection, addDoc } from "firebase/firestore";
 
 function ChatComponent({conversation, updateMessage}) {
 
     console.log('conversation', conversation);
-    const [messages, setMessages] = useState([]); // Almacena los mensajes
+    
     const [inputText, setInputText] = useState(""); // Almacena el texto del input
   
 
@@ -46,7 +48,9 @@ function ChatComponent({conversation, updateMessage}) {
                 }`}
                 style={{ maxWidth: "70%" }}
               >
-                {message.text}
+                <p>
+                    <span className="fs-6 fw-bold">{message.text}</span> {"  "}
+                     -<span style={{ fontSize: "0.75rem" }} className="text-muted small">{  moment(message.date).format("HH:mm DD/MM/YY")}</span> </p>  
               </div>
             </div>
           ))}
