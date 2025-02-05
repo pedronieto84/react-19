@@ -1,6 +1,6 @@
 import { Form, Button } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
-function LoginFormComponent({formSubmitted}: {formSubmitted: (response) => void}) {
+function LoginFormComponent({formSubmitted, type}: {formSubmitted: (response) => void, type: string}) {
 
       // Estados para los campos del formulario
   const [email, setEmail] = useState<string>('');
@@ -90,7 +90,7 @@ function LoginFormComponent({formSubmitted}: {formSubmitted: (response) => void}
 
             <div style={{ display: 'flex', justifyContent: 'center' }}>
             <Button variant="primary" type="submit" disabled={!isFormValid}>
-                Enviar
+                {type === 'login' ? 'Iniciar sesión' : 'Crear cuenta'}
             </Button>
             </div>
          

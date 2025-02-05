@@ -21,7 +21,7 @@ function LoginPage() {
     return (
         <div>
             <h1>Login</h1>
-            <LoginFormComponent formSubmitted={loginFormData} />
+            <LoginFormComponent formSubmitted={loginFormData} type={'login'} />
 
             <div className="d-flex justify-content-center mt-3">
                 <a  className="">

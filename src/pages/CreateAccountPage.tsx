@@ -21,8 +21,8 @@ function CreateAccountPage() {
         }
     return ( 
      <div>
-            <h1>Login</h1>
-            <LoginFormComponent formSubmitted={loginFormData} />
+            <h1>Crear cuenta</h1>
+            <LoginFormComponent formSubmitted={loginFormData} type={'register'} />
             <div className="d-flex justify-content-center mt-3">
                 <a  className="">
                     <Link to="/login">Ya tengo cuenta, ir al Login</Link>
