@@ -1,6 +1,6 @@
 import { Link, useParams } from 'react-router-dom';
 import {  ChatRoomUbicationPersons } from '../types/globalTypes';
-import { useState, useEffect, SetStateAction } from 'react';
+import { useState, useEffect } from 'react';
 import { useGetChatRoomPositions } from '../hooks/getChatRoomPositions';
 import { db } from "./../hooks/firebaseConfig";
 import { collection, onSnapshot, addDoc,  doc, setDoc, increment, orderBy, query  } from "firebase/firestore";
