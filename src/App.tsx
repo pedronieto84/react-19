@@ -5,6 +5,8 @@ import LoginPage from "./pages/loginPage";
 import CreateAccountPage from "./pages/CreateAccountPage";
 import HallPage from "./pages/HallPage";
 import ChatRoomPage from "./pages/ChatRoomPage";
+import TablePage from "./pages/TablePage";
+import ChartPage from "./pages/ChartPage";
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';

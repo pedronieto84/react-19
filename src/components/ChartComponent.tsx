@@ -1,5 +1,5 @@
 function ChartComponent() {
-    return (  );
+    return ( <></> );
 }
 
 export default ChartComponent;

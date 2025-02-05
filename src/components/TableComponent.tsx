@@ -1,5 +1,5 @@
 function TableComponent() {
-    return (  );
+    return ( <></> );
 }
 
 export default TableComponent;
