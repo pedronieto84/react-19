@@ -10,8 +10,9 @@ const PostList = () => {
 
   // useEffect para despachar la acción al montar el componente
   useEffect(() => {
+    console.log('useEffect');
     dispatch(getPostsActionSuccess()); // Despachamos la acción asíncrona
-  }, [dispatch]);
+  }, []);
 
   return (
     <div>
