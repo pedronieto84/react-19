@@ -1,4 +1,4 @@
-import LoginFormComponent from "../folder/loginFormComponent";
+import LoginFormComponent from "../components/loginFormComponent";
 import { LoginData } from "../types/globalTypes";
 import { auth } from "./../hooks/firebaseConfig";
 import { signInWithEmailAndPassword } from "firebase/auth";
@@ -24,9 +24,9 @@ function LoginPage() {
             <LoginFormComponent formSubmitted={loginFormData} type={'login'} />
 
             <div className="d-flex justify-content-center mt-3">
-                
-                    <Link to="/register">Crear cuenta</Link>
-                
+
+                <Link to="/register">Crear cuenta</Link>
+
             </div>
 
 

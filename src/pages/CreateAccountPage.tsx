@@ -1,6 +1,6 @@
 import { auth } from "./../hooks/firebaseConfig";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import LoginFormComponent from "../folder/loginFormComponent";
+import LoginFormComponent from "../components/loginFormComponent";
 import { LoginData } from '../types/globalTypes';
 import { useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'

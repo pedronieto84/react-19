@@ -5,6 +5,7 @@ import { useGetChatRoomPositions } from '../hooks/getChatRoomPositions';
 
 
 import {auth} from '../hooks/firebaseConfig';
+import ChatComponent from '../components/ChatComponent';
 
 function ChatRoomPage() {
 
@@ -16,6 +17,7 @@ function ChatRoomPage() {
        return ( 
     <div>
 <p>{chatRoomIds.contrarioId}   {chatRoomIds.miId}</p>
+<ChatComponent />
     </div> );
 }
 
