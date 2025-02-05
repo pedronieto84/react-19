@@ -4,7 +4,8 @@ import { useEffect, useState } from 'react'
 
 import { db } from "./../hooks/firebaseConfig";
 import { collection, getDocs, onSnapshot } from "firebase/firestore";
-
+import { auth } from "./../hooks/firebaseConfig";
+import { FirebaseUserWithId } from '../types/globalTypes';
 
 
 function HallPage() {
@@ -38,10 +39,11 @@ function HallPage() {
                 
                 id: doc.id,
                 ...doc.data(),
-            }));
-            console.log('data', usersData);
+            })) as FirebaseUserWithId[];
+            const quitoMiUsuario = usersData.filter((user) => user.email !== auth.currentUser?.email);
+            console.log('curr user', auth.currentUser);
             setLoading(false);
-            setUsers(usersData);
+            setUsers(quitoMiUsuario);
             
         });
 
@@ -60,7 +62,7 @@ function HallPage() {
 
                 <ul className="list-group">
                     {users.map((user) => (
-
+                        
                         <li key={1} className="list-group-item">
                             <Link to={`/detail/`}>{user.email}</Link>
                         </li>
