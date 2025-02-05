@@ -6,16 +6,19 @@ import { useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 
 import { db } from "./../hooks/firebaseConfig";
-import { collection, addDoc } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
 
 function CreateAccountPage() {
 
   const navigate = useNavigate();
 
 
-  const addData = async (formLoginData: LoginData) => {
+  const addData = async (formLoginData: LoginData, userId: string) => {
     try {
-      await addDoc(collection(db, "users"), { email: formLoginData.email });
+      await setDoc(doc(db, "users", userId), { 
+        email: formLoginData.email 
+      });
+      
       console.log("Document added!");
     } catch (error) {
       console.error("Error adding document:", error);
@@ -26,7 +29,7 @@ function CreateAccountPage() {
     console.log(response);
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, response.email, response.password);
-       await addData(response);
+       await addData(response, userCredential.user.uid);
       navigate('/hall')
       console.log("User logged in:", userCredential.user);
     } catch (error) {
