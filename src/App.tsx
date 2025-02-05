@@ -29,6 +29,8 @@ function App() {
               <Nav.Link as={Link} to="/register">Create Account</Nav.Link>
               <Nav.Link as={Link} to="/hall">Hall</Nav.Link>
               <Nav.Link as={Link} to="/chat-room">Chat room</Nav.Link>
+              <Nav.Link as={Link} to="/chart">Chart</Nav.Link>
+              <Nav.Link as={Link} to="/table">Table</Nav.Link>
               
             </Nav>
           </Navbar.Collapse>
@@ -39,6 +41,8 @@ function App() {
             <Route path="/register" element={<CreateAccountPage />} />
             <Route path="/hall" element={<HallPage />} />
             <Route path="/chat-room/:id" element={<ChatRoomPage />} />
+            <Route path="/table" element={<TablePage />} />
+            <Route path="/chart" element={<ChartPage />} />
             <Route path="/" element={<LoginPage />}  />
           </Routes>
         </div>

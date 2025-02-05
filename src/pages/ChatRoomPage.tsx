@@ -3,7 +3,7 @@ import { FirebaseUserWithId, ChatRoomUbicationPersons } from '../types/globalTyp
 import { useState, useEffect } from 'react';
 import { useGetChatRoomPositions } from '../hooks/getChatRoomPositions';
 import { db } from "./../hooks/firebaseConfig";
-import { collection, getDocs, onSnapshot, addDoc, orderBy, query } from "firebase/firestore";
+import { collection, getDocs, onSnapshot, addDoc, orderBy, query, doc, setDoc, increment  } from "firebase/firestore";
 
 import { auth } from '../hooks/firebaseConfig';
 import ChatComponent from '../components/ChatComponent';
@@ -37,6 +37,18 @@ function ChatRoomPage() {
 
         try {
             await addDoc(collection(db, `chats/${id}/chatroom`), objectOfConversation);
+            const docRef = doc(db, "stats", 'globalStats');
+
+            const length = objectOfConversation.text.length;
+            const sender = objectOfConversation.sender === auth.currentUser?.uid ? 1 : 0;
+            const total = 1
+            // Usar setDoc para guardar el objeto
+            await setDoc(docRef, {length: increment(length), sender:increment(sender), total:increment(total)}, { merge: true });
+
+            // Updateo solo mis campos
+            const miId = auth.currentUser?.uid as string
+            const docRefUser = doc(db, `users`, miId);
+            await setDoc(docRefUser, {length: increment(length), sender:increment(sender), total:increment(total)}, { merge: true });
             console.log("Document added!");
         } catch (error) {
             console.error("Error adding document:", error);
@@ -64,6 +76,7 @@ function ChatRoomPage() {
                 id: doc.id,
                 ...doc.data(),
             }))
+            
             console.log('ordeno el array', conversation.sort((a, b) => a.date - b.date));
             setConversation(conversation);
             setLoading(false);
