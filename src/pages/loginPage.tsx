@@ -18,6 +18,7 @@ function LoginPage() {
     }
     return (
         <div>
+            <h1>Login</h1>
             <LoginFormComponent formSubmitted={loginFormData} />
             <div className="container bg-light">
             <div className="col-md-12 text-center mt-20">
