@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react'
 import { db } from "./../hooks/firebaseConfig";
 import { collection, getDocs, onSnapshot } from "firebase/firestore";
 import { auth } from "./../hooks/firebaseConfig";
-import { FirebaseUserWithId } from '../types/globalTypes';
+
 
 import { useOrderIds } from './../hooks/orderIds';
 

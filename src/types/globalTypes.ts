@@ -7,3 +7,8 @@ export interface FirebaseUserWithId  {
     id:string
     email:string
 }
+
+export type ChatRoomUbicationPersons={
+    miId:string
+    contrarioId:string
+}

@@ -38,7 +38,7 @@ function App() {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<CreateAccountPage />} />
             <Route path="/hall" element={<HallPage />} />
-            <Route path="/chat-room" element={<ChatRoomPage />} />
+            <Route path="/chat-room/:id" element={<ChatRoomPage />} />
             <Route path="/" element={<h2>Escoge una opción</h2>} />
           </Routes>
         </div>
