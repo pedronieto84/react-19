@@ -5,8 +5,8 @@ import { useEffect, useState } from 'react'
 import { db } from "./../hooks/firebaseConfig";
 import { collection, getDocs, onSnapshot } from "firebase/firestore";
 import { auth } from "./../hooks/firebaseConfig";
-
-
+import { getAuth, signOut } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 import { useOrderIds } from './../hooks/orderIds';
 
 
@@ -20,8 +20,12 @@ function HallPage() {
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
 
-
-   
+    const navigate = useNavigate();
+    const handleButtonClick = async () => {
+        // Navigate to the "/about" route
+        await signOut(auth)
+        navigate("/");
+      };
 
 
 
@@ -67,9 +71,14 @@ function HallPage() {
 
 
                 </ul>
+                <div className="d-flex justify-content-center mt-3">
 
+<a href="/" onClick={handleButtonClick}>Salir</a>
+
+</div>
 
             </div>
+ 
         </div>
     );
 }

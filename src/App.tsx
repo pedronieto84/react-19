@@ -39,7 +39,7 @@ function App() {
             <Route path="/register" element={<CreateAccountPage />} />
             <Route path="/hall" element={<HallPage />} />
             <Route path="/chat-room/:id" element={<ChatRoomPage />} />
-            <Route path="/" element={<h2>Escoge una opción</h2>} />
+            <Route path="/" element={<LoginPage />}  />
           </Routes>
         </div>
       </Container>
