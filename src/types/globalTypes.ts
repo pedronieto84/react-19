@@ -12,3 +12,11 @@ export type ChatRoomUbicationPersons={
     miId:string
     contrarioId:string
 }
+
+export type UserDatabaseReccord={
+    email:string
+    sender:string
+    length:number
+    total:number
+    id?:string
+}
