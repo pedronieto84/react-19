@@ -86,9 +86,13 @@ function LoginFormComponent() {
             </Form.Group>
 
             {/* Botón de Enviar */}
+
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
             <Button variant="primary" type="submit" disabled={!isFormValid}>
                 Enviar
             </Button>
+            </div>
+         
         </Form></>);
 }
 

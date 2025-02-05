@@ -2,8 +2,9 @@ import LoginFormComponent from "../folder/loginFormComponent";
 
 function LoginPage() {
     return (
-        <>
-           <LoginFormComponent /></>);
+        <div>
+            <LoginFormComponent />
+        </div>);
 }
 
 export default LoginPage;
