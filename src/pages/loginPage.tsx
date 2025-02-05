@@ -24,9 +24,9 @@ function LoginPage() {
             <LoginFormComponent formSubmitted={loginFormData} type={'login'} />
 
             <div className="d-flex justify-content-center mt-3">
-                <a  className="">
+                
                     <Link to="/register">Crear cuenta</Link>
-                </a>
+                
             </div>
 
 
