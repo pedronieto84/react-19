@@ -1,7 +1,6 @@
-import { getPosts } from './../hook/api'
 import { Post } from './../interfaces/interfaces'
-import { dispatch } from 'redux-thunk';
-
+import { Dispatch } from 'redux';
+import { postsObservable } from './../observables/postsObservables';
 
 // Esto será el texto de la acción que veré en react-devtools
 export const INCREMENT = 'Incrementar' 
@@ -30,13 +29,12 @@ export const getPostsAction = (posts: Post[]) => ({
 });
 
 // Acción asíncrona para obtener los posts desde la API
-export const getPostsActionSuccess = () => {
-  return async (dispatch) => { // `dispatch` es proporcionado por redux-thunk
-    try {
-      const posts = await getPosts(); // Llamamos al hook de la API
-      dispatch(getPostsAction(posts)); // Despachamos la acción con los posts
-    } catch (error) {
-      console.error('Error fetching posts:', error);
-    }
+export const fetchPostsObservable = () => {
+  return (dispatch: Dispatch) => {
+    const subscription = postsObservable.subscribe((posts: Post[]) => {
+      dispatch(getPostsAction(posts));
+    });
+
+    return () => subscription.unsubscribe();
   };
 };
