@@ -14,7 +14,10 @@ const PostList = () => {
     const unsubscribe = dispatch(fetchPostsObservable());
 
     return () => {
-      if (unsubscribe) unsubscribe();
+      if (unsubscribe) {
+        console.log('unsubscribe');
+        unsubscribe();
+      }
     };
   }, [dispatch]);
 

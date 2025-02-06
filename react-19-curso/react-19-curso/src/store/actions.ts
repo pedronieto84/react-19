@@ -32,6 +32,7 @@ export const getPostsAction = (posts: Post[]) => ({
 export const fetchPostsObservable = () => {
   return (dispatch: Dispatch) => {
     const subscription = postsObservable.subscribe((posts: Post[]) => {
+      console.log('dispatch', posts);
       dispatch(getPostsAction(posts));
     });
 
