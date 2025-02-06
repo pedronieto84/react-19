@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { IState, Post } from '../interfaces/interfaces'; // Importamos la interfaz Post
 import { getPostsActionSuccess } from '../store/actions'; // Importamos la acción asíncrona
+import { postsObservable } from './../observables/postsObservables';
 
 const PostList = () => {
   const dispatch = useDispatch(); // Obtenemos `dispatch`
@@ -10,8 +11,12 @@ const PostList = () => {
 
   // useEffect para despachar la acción al montar el componente
   useEffect(() => {
-    console.log('useEffect');
-    dispatch(getPostsActionSuccess()); // Despachamos la acción asíncrona
+    const subscription = postsObservable.subscribe((posts: Post[]) => {
+      console.log('observable', posts);
+      dispatch(getPostsActionSuccess(posts));
+    });
+  
+    return () => subscription.unsubscribe();
   }, []);
 
   return (
