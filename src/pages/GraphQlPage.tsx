@@ -52,13 +52,8 @@ const GraphQlPage = () => {
     setName("");
     setEmail("");
   };
-  const { loading, error, data } = useQuery(GET_COUNTRY_DATA);
+  
 
-  // Handle loading state
-  if (loading) return <p>Loading...</p>;
-
-  // Handle error state
-  if (error) return <p>Error: {error.message}</p>;
 
   // Render the data
   return (
