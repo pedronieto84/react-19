@@ -1,19 +1,10 @@
 //import GraphQlComponent from "../components/GraphQlComponent"
-import { gql, useQuery } from "@apollo/client";
+import { gql, useQuery, useMutation, useSubscription } from "@apollo/client";
+import { useState } from "react";
 
-// Define your GraphQL query
-const GET_COUNTRIES = gql`
-  query {
-  countries {
-    code
-    name
-    capital
-    currency
-  }
-}
-`;
+
 // Hacer consultas graphql dinamicas
-const fields = ["code", "name",  "currency"];
+const fields = ["code", "name", "currency"];
 
 const GET_COUNTRY_DATA = gql`
     query {
@@ -23,30 +14,87 @@ const GET_COUNTRY_DATA = gql`
     }
     `;
 
+// MUTATION para crear usuario
+const CREATE_USER = gql`
+mutation CreateUser($name: String!, $email: String!) {
+  createUser(name: $name, email: $email) {
+    id
+    name
+    email
+  }
+}
+`;
 
-const GraphQlPage = () => {const { loading, error, data } = useQuery(GET_COUNTRY_DATA);
+// SUBSCRIPTION para recibir nuevos usuarios en tiempo real
+const USER_CREATED = gql`
+subscription {
+  userCreated {
+    id
+    name
+    email
+  }
+}
+`;
 
-// Handle loading state
-if (loading) return <p>Loading...</p>;
 
-// Handle error state
-if (error) return <p>Error: {error.message}</p>;
 
-// Render the data
-return (
- 
-    <div>
-      <h1>Países del Mundo</h1>
-      <ul>
-        {data.countries.map((country) => (
-          <li key={country.code}>
-            <strong>{country.name}</strong> ({country.code}) - Capital:{" "}
-            {country.capital}, Moneda: {country.currency}
-          </li>
-        ))}
-      </ul>
-    </div>
-);
+const GraphQlPage = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [createUser] = useMutation(CREATE_USER);
+
+  // Escucha nuevos usuarios en tiempo real
+  const { data } = useSubscription(USER_CREATED);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await createUser({ variables: { name, email } });
+    setName("");
+    setEmail("");
+  };
+  const { loading, error, data } = useQuery(GET_COUNTRY_DATA);
+
+  // Handle loading state
+  if (loading) return <p>Loading...</p>;
+
+  // Handle error state
+  if (error) return <p>Error: {error.message}</p>;
+
+  // Render the data
+  return (
+    <>
+
+      <div>
+        <h2>Registro de Usuarios</h2>
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            placeholder="Nombre"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
+          <input
+            type="email"
+            placeholder="Correo"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <button type="submit">Crear Usuario</button>
+        </form>
+
+        <h3>Usuarios Recientes</h3>
+        {data && (
+          <p>
+            <b>{data.userCreated.name}</b> ({data.userCreated.email}) acaba de registrarse.
+          </p>
+        )}
+      </div>
+
+
+    </>
+  );
 }
 
 export default GraphQlPage
